@@ -1,0 +1,5 @@
+{
+  "users-auth": [
+    { "id": 1, "nickname": "userName", "password": "passWord" }
+  ]
+}

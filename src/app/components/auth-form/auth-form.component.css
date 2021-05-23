@@ -17,6 +17,15 @@
   margin: 0 auto;
 }
 
+.form__error-massage {
+  color: rgb(253, 67, 67);
+  font-size: 1em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
 .form__field {
   margin-top: 1em;
 }

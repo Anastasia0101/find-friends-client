@@ -2,7 +2,7 @@
   <h1 class="container__title">Login</h1>
   <form [formGroup]="userAuthForm" (ngSubmit)="onFormSubmit()" class="container__form form">
 
-    <mat-form-field>
+    <mat-form-field class="form__field">
       <mat-label>Nickname</mat-label>
       <input matInput formControlName="nickname">
     </mat-form-field>
@@ -15,10 +15,14 @@
       </button>
     </mat-form-field>
 
+    <mat-error *ngIf="!isDataCorrect" class="form__error-massage">Nickname or password is incorrect</mat-error>
+
     <mat-checkbox formControlName="isRememberUserData" class="form__field">Remember me</mat-checkbox>
 
     <button type="submit" [disabled]="!userAuthForm.valid" class="form__btn">Login</button>
   </form>
 </div>
+
+
 
 <!-- check all -->

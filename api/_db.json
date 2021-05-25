@@ -1,5 +1,67 @@
 {
-  "users-auth": [
-    { "id": 1, "nickname": "userName", "password": "passWord" }
+  "users": [
+    {
+      "id": 1,
+      "name": "Ann",
+      "nickname": "ann10",
+      "email": "ann@mail.com",
+      "dateOfBirth": "2021-05-11T21:00:00.000Z",
+      "country": "united-states",
+      "sentenceAboutUser": "I'm a girl!"
+    },
+    {
+      "name": "Sam",
+      "nickname": "samVT3",
+      "email": "sadmm@mail.com",
+      "dateOfBirth": "2021-05-04T21:00:00.000Z",
+      "country": "ukraine",
+      "sentenceAboutUser": "cool, cool",
+      "id": 2
+    },
+    {
+      "name": "Tom",
+      "nickname": "bear1020",
+      "email": "bearssss20@mail.com",
+      "dateOfBirth": "2021-05-12T21:00:00.000Z",
+      "country": "france",
+      "sentenceAboutUser": "Bears.....",
+      "id": 3
+    },
+    {
+      "name": "Jennie",
+      "nickname": "jen323",
+      "email": "jenniekkk@mail.com",
+      "dateOfBirth": "2021-05-11T21:00:00.000Z",
+      "country": "italy",
+      "sentenceAboutUser": "Hi! I am Jennie.",
+      "id": 4
+    },
+    {
+      "name": "Kate",
+      "nickname": "ketti4343",
+      "email": "mayjdd@mail.com",
+      "dateOfBirth": "2021-05-11T21:00:00.000Z",
+      "country": "france",
+      "sentenceAboutUser": "Hi! I am Kate.",
+      "id": 5
+    },
+    {
+      "name": "Jack",
+      "nickname": "Jack999",
+      "email": "jeck333@mail.com",
+      "dateOfBirth": "2021-05-11T21:00:00.000Z",
+      "country": "united-states",
+      "sentenceAboutUser": "Helloooo! Jack is here!!!!!",
+      "id": 6
+    },
+    {
+      "name": "Tim",
+      "nickname": "blackTim34",
+      "email": "tim@mail.com",
+      "dateOfBirth": "2009-07-19T21:00:00.000Z",
+      "country": "france",
+      "sentenceAboutUser": "Love book, love rose",
+      "id": 7
+    }
   ]
 }

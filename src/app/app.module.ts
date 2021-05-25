@@ -13,12 +13,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserAuthService } from './services/user-auth.service';
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { UserRegistrationService } from './services/user-registration.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,10 +34,16 @@ import { RegistrationPageComponent } from './components/registration-page/regist
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [
-    UserAuthService
+    UserAuthService,
+    UserRegistrationService,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

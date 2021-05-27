@@ -22,13 +22,13 @@ export class AuthFormComponent {
   ) {
     this.userAuthForm = this.formBuilder.group({
       nickname: [
-        'john', [
+        '', [
           Validators.required,
           Validators.minLength(4)
         ]
       ],
       password: [
-        'changeme', [
+        '', [
           Validators.required
         ]
       ],

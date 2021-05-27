@@ -18,12 +18,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { UserRegistrationService } from './services/user-registration.service';
+import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { MainPageComponent } from './components/views/main-page/main-page.component';
+import { HeaderComponent } from './components/shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
     RegistrationPageComponent,
+    EditProfilePageComponent,
+    ProfilePageComponent,
+    MainPageComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationFormValue } from 'src/app/models/user-registration/registration-form-value.model';
 import { User } from 'src/app/models/user.model';
 import { UserRegistrationService } from 'src/app/services/user-registration.service';
 
 @Component({
-  selector: 'app-registration-page',
-  templateUrl: './registration-page.component.html',
-  styleUrls: ['./registration-page.component.css']
+  selector: 'app-edit-profile-page',
+  templateUrl: './edit-profile-page.component.html',
+  styleUrls: ['./edit-profile-page.component.css']
 })
-export class RegistrationPageComponent {
+export class EditProfilePageComponent implements OnInit {
+
+  @Input() user!: User;
+
+  nameOfUser = 'ann';
 
   registrationForm: FormGroup;
-  user!: User;
+
+  id = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,8 +51,26 @@ export class RegistrationPageComponent {
     });
   }
 
+  ngOnInit(): void {
+    console.log(this.user);
+    if (this.user) {
+      this.updateFormValue();
+    }
+  }
+
   saveUserData(): void {
     const formData = this.registrationForm.value as RegistrationFormValue;
     this.userRegistrationService.addNewUser(formData).subscribe();
+  }
+
+  updateFormValue(): void {
+    this.registrationForm.setValue({
+      name: this.user.name,
+      nickname: this.user.nickname,
+      email: this.user.email,
+      dateOfBirth: this.user.dateOfBirth,
+      country: this.user.country,
+      sentenceAboutUser: this.user.sentenceAboutUser
+    });
   }
 }

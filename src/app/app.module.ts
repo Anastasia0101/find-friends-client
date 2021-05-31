@@ -20,6 +20,7 @@ import { UserComponent } from './components/user-friends/user/user.component';
 import { UserService } from './services/users.service';
 import { HeaderComponent } from './components/shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
+import { ChatComponent } from './components/chats/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MaterialModule } from './material/material.module';
     UsersListComponent,
     UserComponent,
     HeaderComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

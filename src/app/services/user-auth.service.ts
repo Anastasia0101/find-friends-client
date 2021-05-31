@@ -13,12 +13,18 @@ export class UserAuthService {
   login(nickname: string, password: string): Observable<UserAuth> {
     const url = `${environment.apiUrl}/auth/login`;
     return this.httpClient.post<UserAuth>(url, {nickname, password}).pipe(
-      tap((response) => this.saveUserToken(response.access_token))
+      tap((response) => this.saveUserToken(response))
     );
   }
 
-  saveUserToken(token: string): void {
-    localStorage.setItem('auth', token);
+  saveUserToken(user: UserAuth): void {
+    if (user) {
+      localStorage.setItem('auth', user.access_token);
+    }
+  }
+
+  deleteUserToken(): void {
+    localStorage.removeItem('auth');
   }
 
   isAuthenticated(): boolean {

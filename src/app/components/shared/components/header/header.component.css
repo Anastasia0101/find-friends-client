@@ -1,3 +1,9 @@
+.circle {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+}
+
 .header {
   display: flex;
   width: 100%;
@@ -13,9 +19,6 @@
 
 .logo__circle {
   border: 1px solid rgb(92, 5, 133);
-  border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
 }
 
 .logo__text {
@@ -35,11 +38,6 @@
 
 .user-account__nickname {
   margin-right: 1em;
-}
-.user-account__avatar {
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 50%;
 }
 
 .user-account__menu {

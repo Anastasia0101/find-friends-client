@@ -4,6 +4,7 @@
       "id": 1,
       "name": "Ann",
       "nickname": "ann10",
+      "password": "ann10",
       "email": "ann@mail.com",
       "dateOfBirth": "2021-05-11T21:00:00.000Z",
       "country": "united-states",
@@ -62,42 +63,6 @@
       "country": "france",
       "sentenceAboutUser": "Love book, love rose",
       "id": 7
-    },
-    {
-      "name": "",
-      "nickname": "",
-      "email": "",
-      "dateOfBirth": "",
-      "country": "",
-      "sentenceAboutUser": "",
-      "id": 8
-    },
-    {
-      "name": "",
-      "nickname": "",
-      "email": "",
-      "dateOfBirth": "",
-      "country": "",
-      "sentenceAboutUser": "",
-      "id": 9
-    },
-    {
-      "name": "",
-      "nickname": "",
-      "email": "",
-      "dateOfBirth": "",
-      "country": "",
-      "sentenceAboutUser": "",
-      "id": 10
-    },
-    {
-      "name": "",
-      "nickname": "",
-      "email": "",
-      "dateOfBirth": "",
-      "country": "",
-      "sentenceAboutUser": "",
-      "id": 11
     }
   ]
 }

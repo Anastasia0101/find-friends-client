@@ -1,4 +1,28 @@
-<div class="header">
-  
-</div>
+<header class="header">
+  <div class="header__logo logo">
+    <div class="logo__circle"></div>
+    <p class="logo__text">Find friends</p>
+  </div>
+  <nav class="header__navbar navbar">
+    <a routerLink="#" class="navbar__item">Account</a>
+    <a routerLink="#" class="navbar__item">Chats</a>
+    <a routerLink="/find-friends" class="navbar__item">Search</a>
+  </nav>
+  <div class="header__user-account user-account">
+    <p class="user-account__nickname">Nickname</p>
+    <img src="../../../../../assets/img/test-img.jpg" alt="" class="user-account__avatar">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="user-account__menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>Setting</span>
+      </button>
+      <button mat-menu-item>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>
+<div class="line"></div>
 

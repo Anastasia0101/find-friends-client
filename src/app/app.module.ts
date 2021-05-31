@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
+
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,10 +18,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+
 import { UserRegistrationService } from './services/user-registration.service';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
-import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
+import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
+import { UserComponent } from './components/user-friends/user/user.component';
+import { UserService } from './services/users.service';
 import { HeaderComponent } from './components/shared/components/header/header.component';
 
 @NgModule({
@@ -29,8 +37,10 @@ import { HeaderComponent } from './components/shared/components/header/header.co
     AuthFormComponent,
     RegistrationPageComponent,
     EditProfilePageComponent,
-    ProfilePageComponent,
     MainPageComponent,
+    FindFriendsPageComponent,
+    UsersListComponent,
+    UserComponent,
     HeaderComponent,
   ],
   imports: [
@@ -46,12 +56,16 @@ import { HeaderComponent } from './components/shared/components/header/header.co
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [
     UserAuthService,
     UserRegistrationService,
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

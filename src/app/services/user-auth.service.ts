@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { UserAuth } from '../models/user-auth.model';
 import { environment } from '../../environments/environment';
 
@@ -11,11 +12,19 @@ export class UserAuthService {
 
   login(nickname: string, password: string): Observable<UserAuth> {
     const url = `${environment.apiUrl}/auth/login`;
-    return this.httpClient.post<UserAuth>(url, {nickname: nickname, password: password});
+    return this.httpClient.post<UserAuth>(url, {nickname, password}).pipe(
+      tap((response) => this.saveUserToken(response.access_token))
+    );
   }
 
-  getUsers(): Observable<UserAuth[]> {
-    const url = 'http://localhost:3000/users';
-    return this.httpClient.get<UserAuth[]>(url);
+  saveUserToken(token: string): void {
+    localStorage.setItem('auth', token);
+  }
+
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('auth')) {
+      return true;
+    }
+    return false;
   }
 }

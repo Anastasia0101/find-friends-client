@@ -1,0 +1,7 @@
+<div class="container">
+  <ul class="container__users-list users-list">
+    <li *ngFor="let user of usersData" class="users-list__user">
+      <app-user [user]="user"></app-user>
+    </li>
+  </ul>
+</div>

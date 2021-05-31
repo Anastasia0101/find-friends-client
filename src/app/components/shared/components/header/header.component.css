@@ -1,3 +1,60 @@
 .header {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1em;
+}
 
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__circle {
+  border: 1px solid rgb(92, 5, 133);
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.logo__text {
+  margin-left: 1em;
+}
+
+.navbar__item {
+  text-decoration: none;
+  margin: 1em 3em;
+  color: #929292;
+}
+
+.header__user-account {
+  display: flex;
+  align-items: center;
+}
+
+.user-account__nickname {
+  margin-right: 1em;
+}
+.user-account__avatar {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+}
+
+.user-account__menu {
+  border: none;
+  background-color: #FFFFFF;
+}
+
+.user-account__menu:hover {
+  cursor: pointer;
+}
+
+.line {
+  width: 99.7%;
+  height: 0;
+  border: 1px solid #ececec;
+  background-color: #ececec;
+  margin: 1em 0;
 }

@@ -1,0 +1,49 @@
+.user {
+  font-size: 16px;
+  text-align: center;
+  width: 16em;
+  border: 1px solid #dfdfdf;
+  margin: 1em;
+  box-shadow: 0px 2px 5px 0px #341e58;
+}
+
+.header__avatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+}
+
+.header {
+  text-align: left;
+  display: flex;
+}
+
+.header__subtitle {
+
+}
+
+.header__icon {
+  display: flex;
+  justify-self: end;
+}
+
+.user__interests-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.interests-list {
+  display: flex;
+  padding: 0;
+  margin: 1em 0;
+}
+
+.interests-list__item {
+  list-style: none;
+  margin-right: 5px;
+}
+
+.interests-list__icon {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,4 +1,3 @@
 export interface UserAuth {
-  nickname: string;
-  password: string;
+  access_token: string;
 }

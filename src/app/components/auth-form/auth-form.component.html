@@ -15,10 +15,11 @@
       </button>
     </mat-form-field>
 
-    <mat-error *ngIf="!isDataCorrect" class="form__error-massage">Nickname or password is incorrect</mat-error>
-
-    <mat-checkbox formControlName="isRememberUserData" class="form__field">Remember me</mat-checkbox>
+    <ng-container *ngIf="!isDataCorrect">
+      <mat-error class="form__error-massage">Nickname or password is incorrect</mat-error>
+    </ng-container>
 
     <button type="submit" [disabled]="!userAuthForm.valid" class="form__btn">Login</button>
   </form>
+  <a routerLink="/registration" class="container__link">Create account?</a>
 </div>

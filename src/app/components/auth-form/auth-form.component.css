@@ -1,6 +1,7 @@
  .container {
   font-size: 16px;
   color: #1e0f36;
+  text-align: center;
 }
 
 .container__title {
@@ -38,7 +39,7 @@
   box-shadow: 1px 1px 3px 1px #484849;
   height: 2.4em;
   font-size: 1.2em;
-  margin-top: 1.2em;
+  margin: 1.3em 0;
 }
 
 .form__btn:hover {
@@ -50,3 +51,12 @@
   background-color: #9680bd;
   cursor: default;
 }
+
+.container__link {
+  color: #4d19a7;
+  font-family: 'Playfair Display', serif;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+

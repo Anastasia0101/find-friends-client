@@ -21,6 +21,8 @@ import { UserService } from './services/users.service';
 import { HeaderComponent } from './components/shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
 import { ChatComponent } from './components/chats/chat/chat.component';
+import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
+import { UserAuthPipe } from './pipes/user-auth.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ChatComponent } from './components/chats/chat/chat.component';
     UserComponent,
     HeaderComponent,
     ChatComponent,
+    UserDialogComponent,
+    UserAuthPipe
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,27 @@
-<mat-card class="user">
-  <mat-card-header class="user__header header">
+<mat-card class="user-card">
+  <mat-card-header class="user-card__header header">
     <img mat-card-avatar src="../../../assets/img/test-img.jpg" alt="test-image" class="header__avatar">
     <mat-card-title class="header__title">{{ user.nickname}}</mat-card-title>
     <mat-card-subtitle class="header__subtitle">{{ user.country }}</mat-card-subtitle>
-    <!-- <mat-icon class="icon">person</mat-icon> -->
+    <button class="header__btn btn">
+      <mat-icon class="icon">bookmark_add</mat-icon>
+    </button>
   </mat-card-header>
-  <mat-card-content class="user__interests-list interests-list">
+  <mat-card-content class="user-card__interests-list interests-list">
     <ul class="interests-list">
       <li class="interests-list__item">#dancing</li>
       <li class="interests-list__item">#painting</li>
+      <li class="interests-list__item">#singing</li>
+      <li class="interests-list__item">#tennis</li>
+      <li class="interests-list__item">#tennis</li>
     </ul>
-    <mat-icon class="icon">textsms</mat-icon>
   </mat-card-content>
+  <mat-card-action class="user-card__action action">
+    <button class="action__btn btn">
+      <mat-icon class="icon">person</mat-icon>
+    </button>
+    <button class="action__btn btn">
+      <mat-icon class="icon">email</mat-icon>
+    </button>
+  </mat-card-action>
 </mat-card>

@@ -13,6 +13,9 @@ export class UserService {
     const url = `${environment.apiUrl}/users`;
     return this.httpClient.get<User[]>(url);
   }
+
+  getUserById(id: number): Observable<User> {
+    const url = `${environment.apiUrl}/users/${id}`;
+    return this.httpClient.get<User>(url);
+  }
 }
-
-

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
@@ -16,12 +15,15 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'signup',
+        path: 'sign-up',
         loadChildren: () => import('./modules/signup').then(m => m.SignupModule)
       },
+      {
+        path: 'sign-in',
+        loadChildren: () => import('./modules/signin').then(m => m.SigninModule)
+      }
     ]
   },
-  { path: 'auth-form', component: AuthFormComponent },
   { path: 'edit-profile', component: EditProfilePageComponent },
   { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
   { path: '', component: MainPageComponent },

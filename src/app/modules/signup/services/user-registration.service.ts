@@ -29,7 +29,7 @@ export class UserRegistrationService {
   }
 
   private verifyUserEmail(user: User): Observable<void> {
-    const params = { url: `${window.origin}/auth/signup?progress=email-verified&auth-id=${user.uid}` };
+    const params = { url: `${window.origin}/auth/sign-up?progress=email-verified&auth-id=${user.uid}` };
     const verification$ = !user || user.emailVerified ? of() : from(user.sendEmailVerification(params));
     return verification$.pipe(respondWithVoid);
   }

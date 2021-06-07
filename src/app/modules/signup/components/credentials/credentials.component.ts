@@ -38,7 +38,8 @@ export class CredentialsComponent {
     password: [
       '', [
         Validators.required,
-        Validators.min(6)
+        Validators.pattern('[a-zA-Z0-9]*'),
+        Validators.minLength(4),
       ]
     ],
     dateOfBirth: ['', Validators.required],

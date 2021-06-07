@@ -6,19 +6,24 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {UserRegistrationService} from "./services";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../../material/material.module";
-import {MatFormFieldModule} from "@angular/material/form-field";
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { WaitConfirmationComponent } from './components/wait-confirmation/wait-confirmation.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: CredentialsComponent }
+      { path: '', component: SignupPageComponent }
     ]),
     AngularFireAuthModule,
     ReactiveFormsModule,
     MaterialModule,
   ],
-  declarations: [CredentialsComponent],
+  declarations: [
+    CredentialsComponent,
+    SignupPageComponent,
+    WaitConfirmationComponent
+  ],
   providers: [
     UserRegistrationService
   ]

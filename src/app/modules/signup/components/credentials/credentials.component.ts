@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {UserRegistrationService} from '../../services';
 import {RegistrationUserModel} from "../../models";
@@ -9,6 +9,9 @@ import {RegistrationUserModel} from "../../models";
   styleUrls: ['./credentials.component.css']
 })
 export class CredentialsComponent {
+  @Output()
+  private readonly onComplete: EventEmitter<null> = new EventEmitter<null>();
+
   public registrationForm = this.formBuilder.group({
     name: [
       '', [
@@ -59,7 +62,10 @@ export class CredentialsComponent {
       this.registrationForm.value.sentenceAboutUser
     );
     this.userRegistrationService.addNewUser(userData)
-      .subscribe({error: this.onError.bind(this)});
+      .subscribe({
+        next: () => this.onComplete.next(),
+        error: this.onError.bind(this)
+      });
   }
 
   public getError(control: string): ValidationErrors | null {

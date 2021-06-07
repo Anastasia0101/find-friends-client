@@ -8,12 +8,26 @@ import { MainPageComponent } from './components/views/main-page/main-page.compon
 import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes = [
+  {
+    path: 'auth',
+    children: [
+      {
+        path: '',
+        redirectTo: '/auth/signup',
+        pathMatch: 'full'
+      },
+      {
+        path: 'signup',
+        loadChildren: () => import('./modules/signup').then(m => m.SignupModule)
+      },
+    ]
+  },
   { path: 'auth-form', component: AuthFormComponent },
   { path: 'registration', component: RegistrationPageComponent },
   { path: 'edit-profile', component: EditProfilePageComponent },
   { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
-  { path: 'main', component: MainPageComponent },
-  // { path: '**', redirectTo: 'main', pathMatch: 'full' }
+  { path: '', component: MainPageComponent },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({

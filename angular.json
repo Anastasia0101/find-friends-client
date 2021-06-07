@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "find-friends"
+  "defaultProject": "find-friends",
+  "cli": {
+    "analytics": false
+  }
 }

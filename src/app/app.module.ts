@@ -12,7 +12,6 @@ import { firebaseConfig } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { UserAuthService } from './services/user-auth.service';
-import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { UserRegistrationService } from './services/user-registration.service';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
@@ -31,7 +30,6 @@ import { UserAuthPipe } from './pipes/user-auth.pipe';
   declarations: [
     AppComponent,
     AuthFormComponent,
-    RegistrationPageComponent,
     EditProfilePageComponent,
     MainPageComponent,
     FindFriendsPageComponent,

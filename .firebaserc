@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "find-friends-83dfb": {
+      "hosting": {
+        "find-friends": [
+          "find-friends-83dfb"
+        ]
+      }
+    }
+  }
+}

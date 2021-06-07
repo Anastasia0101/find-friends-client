@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  items: Observable<any[]>;
+
+  constructor(private firestore: AngularFirestore) {
+    this.items = firestore.collection('items').valueChanges();
+  }
+
+  async addData(): Promise<void> {
+    await this.firestore.collection('items').add({name: 'namelsl', surname: 'suddjdd'});
+  }
 }

@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'edit-profile', component: EditProfilePageComponent },
   { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
   { path: 'main', component: MainPageComponent },
-  { path: '**', redirectTo: 'main', pathMatch: 'full' }
+  // { path: '**', redirectTo: 'main', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -7,9 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { firebaseConfig } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { UserAuthService } from './services/user-auth.service';
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
-
 import { UserRegistrationService } from './services/user-registration.service';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
@@ -45,7 +48,9 @@ import { UserAuthPipe } from './pipes/user-auth.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [
     UserAuthService,

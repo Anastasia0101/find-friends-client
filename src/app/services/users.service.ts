@@ -1,21 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable()
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  items!: Observable<User[]>;
+
+  constructor(private firestore: AngularFirestore) { }
 
   getUsers(): Observable<User[]> {
-    const url = `${environment.apiUrl}/users`;
-    return this.httpClient.get<User[]>(url);
-  }
-
-  getUserById(id: number): Observable<User> {
-    const url = `${environment.apiUrl}/users/${id}`;
-    return this.httpClient.get<User>(url);
+    return this.firestore.collection<User>('users').valueChanges();
   }
 }

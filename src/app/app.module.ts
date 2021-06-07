@@ -23,9 +23,9 @@ import { UserComponent } from './components/user-friends/user/user.component';
 import { UserService } from './services/users.service';
 import { HeaderComponent } from './components/shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
-import { ChatComponent } from './components/chats/chat/chat.component';
+import { ChatComponent } from './components/messenger/chat/chat.component';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
-import { UserAuthPipe } from './pipes/user-auth.pipe';
+import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { UserAuthPipe } from './pipes/user-auth.pipe';
     HeaderComponent,
     ChatComponent,
     UserDialogComponent,
-    UserAuthPipe
+    MessengerPageComponent
   ],
   imports: [
     BrowserModule,

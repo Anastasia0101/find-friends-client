@@ -5,15 +5,17 @@ import { EditProfilePageComponent } from './components/edit-profile-page/edit-pr
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
+import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes = [
+  { path: 'main', component: MainPageComponent },
   { path: 'auth-form', component: AuthFormComponent },
   { path: 'registration', component: RegistrationPageComponent },
   { path: 'edit-profile', component: EditProfilePageComponent },
   { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
-  { path: 'main', component: MainPageComponent },
-  // { path: '**', redirectTo: 'main', pathMatch: 'full' }
+  { path: 'messenger-page', component: MessengerPageComponent },
+  { path: '**', redirectTo: 'main', pathMatch: 'full' }
 ];
 
 @NgModule({

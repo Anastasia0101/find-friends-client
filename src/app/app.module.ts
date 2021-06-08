@@ -27,6 +27,7 @@ import { UserDialogComponent } from './components/user-friends/user-dialog/user-
 import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
 import { MessengerSidebarComponent } from './components/messenger/messenger-sidebar/messenger-sidebar.component';
 import { MessengerService } from './services/messenger.service';
+import {SharedModule} from "./modules/shared";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { MessengerService } from './services/messenger.service';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule,
+    SharedModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],

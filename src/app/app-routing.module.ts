@@ -6,6 +6,7 @@ import { FindFriendsPageComponent } from './components/views/find-friends-page/f
 import { MainPageComponent } from './components/views/main-page/main-page.component';
 import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import {AuthOnlyGuard, InauthOnlyGuard} from "./modules/shared";
 
 const routes: Routes = [
   { path: 'main', component: MainPageComponent },
@@ -19,10 +20,11 @@ const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [InauthOnlyGuard],
     children: [
       {
         path: '',
-        redirectTo: '/auth/signup',
+        redirectTo: '/auth/sign-in',
         pathMatch: 'full'
       },
       {
@@ -35,8 +37,17 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'home',
+    canActivate: [AuthOnlyGuard],
+    children: [
+      {
+        path: '',
+        component: FindFriendsPageComponent
+      }
+    ]
+  },
   { path: 'edit-profile', component: EditProfilePageComponent },
-  { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
   { path: '', component: MainPageComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];

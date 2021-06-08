@@ -2,6 +2,14 @@
   <h2 class="container__title">REGISTRATION FORM</h2>
 
   <form [formGroup]="detailsForm" class="container__form form" (ngSubmit)="saveUserData()">
+
+    <mat-label class="file-upload-label">Your Avatar</mat-label>
+    <file-upload
+      [control]="avatarControl"
+      [accept]="acceptedAvatarTypes.join(',')"
+      multiple="false"
+    ></file-upload>
+
     <mat-form-field>
       <mat-label>Your Name:</mat-label>
       <input matInput formControlName="name" required>
@@ -34,6 +42,6 @@
       <textarea matInput formControlName="sentenceAboutUser"></textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" [disabled]="!detailsForm.valid" class="form__btn">Next step</button>
+    <button mat-raised-button color="primary" [disabled]="detailsForm.invalid" class="form__btn">Next step</button>
   </form>
 </div>

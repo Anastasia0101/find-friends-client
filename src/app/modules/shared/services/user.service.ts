@@ -2,17 +2,12 @@ import {Injectable} from "@angular/core";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Observable, of} from "rxjs";
 import {map, switchMap, tap} from "rxjs/operators";
-import {UserModel} from "../models";
+import {UserJSON, UserModel} from "../models";
 import firebase from "firebase";
 import FirebaseUser = firebase.User;
 import {AngularFirestore, CollectionReference} from "@angular/fire/firestore";
 
 type CurrentUser = UserModel | null;
-interface UserJSON {
-  authId: string;
-  nickname: string;
-  isRegistrationFinished: boolean;
-}
 
 @Injectable()
 export class UserService {

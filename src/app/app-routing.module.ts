@@ -29,10 +29,14 @@ const routes: Routes = [
   {
     path: 'home',
     canActivate: [AuthOnlyGuard],
-    component: FindFriendsPageComponent
+    children: [
+      {
+        path: '',
+        component: FindFriendsPageComponent
+      }
+    ]
   },
   { path: 'edit-profile', component: EditProfilePageComponent },
-  { path: 'find-friends', component: FindFriendsPageComponent, canActivate: [AuthGuardService] },
   { path: '', component: MainPageComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];

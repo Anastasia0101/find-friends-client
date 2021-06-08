@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import { CredentialsComponent, SignupPageComponent, WaitConfirmationComponent } from './components';
+import { CredentialsComponent, SignupPageComponent, WaitConfirmationComponent, UserDetailsComponent } from './components';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {UserRegistrationService} from "./services";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -20,7 +20,8 @@ import {MaterialModule} from "../../material/material.module";
   declarations: [
     CredentialsComponent,
     SignupPageComponent,
-    WaitConfirmationComponent
+    WaitConfirmationComponent,
+    UserDetailsComponent
   ],
   providers: [
     UserRegistrationService

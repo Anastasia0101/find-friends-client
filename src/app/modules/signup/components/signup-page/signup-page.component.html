@@ -4,6 +4,10 @@
     (onComplete)="openStep(Steps.WAIT_CONFIRMATION)"
   ></app-credentials>
 
+  <app-user-details
+    *ngSwitchCase="Steps.USER_DETAILS"
+  ></app-user-details>
+
   <app-wait-confirmation
     *ngSwitchCase="Steps.WAIT_CONFIRMATION"
   ></app-wait-confirmation>

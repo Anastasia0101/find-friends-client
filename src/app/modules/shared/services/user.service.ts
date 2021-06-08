@@ -11,6 +11,7 @@ type CurrentUser = UserModel | null;
 interface UserJSON {
   authId: string;
   nickname: string;
+  isRegistrationFinished: boolean;
 }
 
 @Injectable()
@@ -34,7 +35,7 @@ export class UserService {
     );
   }
 
-  private loadCurrentUser(user: FirebaseUser): Observable<UserModel> {
+  private loadCurrentUser(user: FirebaseUser): Observable<CurrentUser> {
     const queryCurrentUser = (ref: CollectionReference) => ref.where('authId', '==', user.uid);
 
     return this.firestore
@@ -46,8 +47,10 @@ export class UserService {
         })),
         map(document => new UserModel(
           document.id,
-          document.data.nickname
-        ))
+          document.data.nickname,
+          document.data.isRegistrationFinished
+        )),
+        map(user => user.isRegistrationFinished ? user : null)
       );
   }
 }

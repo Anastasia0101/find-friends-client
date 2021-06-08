@@ -10,21 +10,26 @@ import {AngularFirestore} from "@angular/fire/firestore";
 
 @Injectable()
 export class UserRegistrationService {
+  public user: RegistrationUserModel = new RegistrationUserModel();
+
   constructor(
     private readonly fireAuth: AngularFireAuth,
     private readonly firestore: AngularFirestore
   ) {}
 
-  addNewUser(userData: RegistrationUserModel): Observable<void> {
-    return from(this.fireAuth.createUserWithEmailAndPassword(userData.email, userData.password)).pipe(
-      switchMap(({ user }) => this.storeUser(userData, user!)),
+  addNewUser(): Observable<void> {
+    return from(this.fireAuth.createUserWithEmailAndPassword(this.user.email, this.user.password)).pipe(
+      switchMap(({ user }) => this.storeUser(user!)),
       switchMap(this.verifyUserEmail.bind(this))
     )
   }
 
-  private storeUser(userData: RegistrationUserModel, firebaseUser: User): Observable<User> {
-    const data: Record<string, any> = {authId: firebaseUser.uid, ...userData};
-    delete data.password;
+  private storeUser(firebaseUser: User): Observable<User> {
+    const data: Record<string, any> = {
+      authId: firebaseUser.uid,
+      email: this.user.email,
+      isRegistrationFinished: this.user.isRegistrationFinished
+    };
     return from(this.firestore.collection('users').add(data)).pipe(map(() => firebaseUser));
   }
 

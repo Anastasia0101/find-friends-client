@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {UserRegistrationService} from '../../services';
-import {RegistrationUserModel} from "../../models";
 
 @Component({
   selector: 'app-credentials',
@@ -13,21 +12,6 @@ export class CredentialsComponent {
   private readonly onComplete: EventEmitter<null> = new EventEmitter<null>();
 
   public registrationForm = this.formBuilder.group({
-    name: [
-      '', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.pattern('[a-zA-Z]*')
-      ]
-    ],
-    nickname: [
-      '', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9]*')
-      ]
-    ],
     email: [
       '', [
         Validators.required,
@@ -42,9 +26,7 @@ export class CredentialsComponent {
         Validators.minLength(4),
       ]
     ],
-    dateOfBirth: ['', Validators.required],
-    country: ['', Validators.required],
-    sentenceAboutUser: ['', Validators.required]
+    confirmPassword: ['', this.validatePasswordConfirmation.bind(this)]
   });
 
   constructor(
@@ -53,20 +35,16 @@ export class CredentialsComponent {
   ) {}
 
   public saveUserData(): void {
-    const userData = new RegistrationUserModel(
-      this.registrationForm.value.name,
-      this.registrationForm.value.nickname,
-      this.registrationForm.value.email,
-      this.registrationForm.value.password,
-      this.registrationForm.value.dateOfBirth,
-      this.registrationForm.value.country,
-      this.registrationForm.value.sentenceAboutUser
-    );
-    this.userRegistrationService.addNewUser(userData)
-      .subscribe({
-        next: () => this.onComplete.next(),
-        error: this.onError.bind(this)
-      });
+    this.userRegistrationService.user.email = this.registrationForm.value.email;
+    this.userRegistrationService.user.password = this.registrationForm.value.password;
+    this.userRegistrationService.addNewUser().subscribe({
+      next: () => this.onComplete.next(),
+      error: this.onError.bind(this)
+    });
+  }
+
+  private validatePasswordConfirmation(control: AbstractControl): ValidationErrors | null {
+    return this.registrationForm?.value.password === control.value ? null : { mismatch: true };
   }
 
   public getError(control: string): ValidationErrors | null {

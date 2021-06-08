@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 
 enum Steps {
   START,
+  USER_DETAILS,
   WAIT_CONFIRMATION,
   INTERESTS
 }
@@ -20,7 +21,7 @@ export class SignupPageComponent {
     const { progress, 'auth-id': authId } = activatedRoute.snapshot.queryParams;
 
     if (progress === 'email-verified') {
-      this.openStep(Steps.INTERESTS);
+      this.openStep(Steps.USER_DETAILS);
       console.log(authId);
     }
   }

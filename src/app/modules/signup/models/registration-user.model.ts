@@ -1,11 +1,10 @@
 export class RegistrationUserModel {
-  constructor(
-    public name: string,
-    public nickname: string,
-    public email: string,
-    public password: string,
-    public dateOfBirth: string,
-    public country: string,
-    public sentenceAboutUser: string
-  ) {}
+  public email = '';
+  public password = '';
+  public name = '';
+  public nickname = '';
+  public dateOfBirth = '';
+  public country = '';
+  public sentenceAboutUser = '';
+  public isRegistrationFinished = false;
 }

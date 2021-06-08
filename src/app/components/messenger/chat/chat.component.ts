@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent {
 
-  constructor() { }
+  public chatId: string | null = null;
 
-  ngOnInit(): void {
+  constructor(private router: ActivatedRoute) {
+    this.router.params.subscribe((url) => {
+      this.chatId = url.id;
+    });
   }
-
 }

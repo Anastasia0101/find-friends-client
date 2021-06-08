@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.sidebar {
+  height: 100%;
+}
+
 .sidebar__drawer {
   width: 300px;
 }

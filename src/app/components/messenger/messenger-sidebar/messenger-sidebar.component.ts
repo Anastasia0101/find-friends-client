@@ -23,4 +23,8 @@ export class MessengerSidebarComponent implements OnInit {
       console.log(this.chats);
     });
   }
+
+  onChooseChat(chat: Chat): void {
+    console.log(chat);
+  }
 }

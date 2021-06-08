@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="container__title">Login</h1>
+  <form [formGroup]="userAuthForm" (ngSubmit)="onFormSubmit()" class="container__form form">
+
+    <mat-form-field class="form__field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+    </mat-form-field>
+
+    <mat-form-field class="form__field">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <ng-container *ngIf="!isDataCorrect">
+      <mat-error class="form__error-massage">Nickname or password is incorrect</mat-error>
+    </ng-container>
+
+    <button type="submit" [disabled]="!userAuthForm.valid" class="form__btn">Login</button>
+  </form>
+  <a routerLink="/sign-up" class="container__link">Create account?</a>
+</div>

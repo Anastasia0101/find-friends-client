@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="currentStep">
+  <app-credentials
+    *ngSwitchCase="Steps.START"
+    (onComplete)="openStep(Steps.WAIT_CONFIRMATION)"
+  ></app-credentials>
+
+  <app-wait-confirmation
+    *ngSwitchCase="Steps.WAIT_CONFIRMATION"
+  ></app-wait-confirmation>
+</ng-container>

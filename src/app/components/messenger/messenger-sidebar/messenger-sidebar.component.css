@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__drawer {
+  width: 300px;
+}
+
+.sidebar__drawer-content {
+  flex-grow: 1;
+}

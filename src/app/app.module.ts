@@ -26,6 +26,8 @@ import { MaterialModule } from './material/material.module';
 import { ChatComponent } from './components/messenger/chat/chat.component';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
 import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
+import { MessengerSidebarComponent } from './components/messenger/messenger-sidebar/messenger-sidebar.component';
+import { MessengerService } from './services/messenger.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { MessengerPageComponent } from './components/views/messenger-page/messen
     HeaderComponent,
     ChatComponent,
     UserDialogComponent,
-    MessengerPageComponent
+    MessengerPageComponent,
+    MessengerSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { MessengerPageComponent } from './components/views/messenger-page/messen
     UserRegistrationService,
     MaterialModule,
     AuthGuardService,
-    UserService
+    UserService,
+    MessengerService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,13 @@
+<app-header></app-header>
+<mat-drawer-container>
+  <mat-drawer mode="side" class="sidebar__drawer" opened>
+    <ul>
+      <li *ngFor="let chat of chats">
+        {{chat.id}}
+      </li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content class="sidebar__drawer-content">
+    Main content
+  </mat-drawer-content>
+</mat-drawer-container>

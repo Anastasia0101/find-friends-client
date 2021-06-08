@@ -15,7 +15,6 @@ import { UserAuthService } from './services/user-auth.service';
 import { UserRegistrationService } from './services/user-registration.service';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { MainPageComponent } from './components/views/main-page/main-page.component';
-import { AuthGuardService } from './guards/auth-guard.service';
 import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
 import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
 import { UserComponent } from './components/user-friends/user/user.component';
@@ -55,7 +54,6 @@ import {SharedModule} from "./modules/shared";
     UserAuthService,
     UserRegistrationService,
     MaterialModule,
-    AuthGuardService,
     UserService
   ],
   bootstrap: [AppComponent]

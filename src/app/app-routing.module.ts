@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
-import { MainPageComponent } from './components/views/main-page/main-page.component';
-import { AuthGuardService } from './guards/auth-guard.service';
 import {AuthOnlyGuard, InauthOnlyGuard} from "./modules/shared";
 
 const routes: Routes = [
@@ -37,8 +35,7 @@ const routes: Routes = [
     ]
   },
   { path: 'edit-profile', component: EditProfilePageComponent },
-  { path: '', component: MainPageComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

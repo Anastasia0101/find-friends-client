@@ -20,14 +20,11 @@ import { FindFriendsPageComponent } from './components/views/find-friends-page/f
 import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
 import { UserComponent } from './components/user-friends/user/user.component';
 import { UserService } from './services/users.service';
-import { HeaderComponent } from './components/shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
-import { ChatComponent } from './components/messenger/chat/chat.component';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
 import { MessengerPageComponent } from './components/views/messenger-page/messenger-page.component';
-import { MessengerSidebarComponent } from './components/messenger/messenger-sidebar/messenger-sidebar.component';
-import { MessengerService } from './services/messenger.service';
 import {SharedModule} from "./modules/shared";
+import { MessengerModule } from './modules/messenger/messenger.module';
 
 @NgModule({
   declarations: [
@@ -38,11 +35,7 @@ import {SharedModule} from "./modules/shared";
     FindFriendsPageComponent,
     UsersListComponent,
     UserComponent,
-    HeaderComponent,
-    ChatComponent,
     UserDialogComponent,
-    MessengerPageComponent,
-    MessengerSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,10 +50,8 @@ import {SharedModule} from "./modules/shared";
   providers: [
     UserAuthService,
     UserRegistrationService,
-    MaterialModule,
     AuthGuardService,
     UserService,
-    MessengerService
   ],
   bootstrap: [AppComponent]
 })

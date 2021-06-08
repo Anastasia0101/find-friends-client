@@ -32,6 +32,7 @@
   text-decoration: none;
   margin: 1em 3em;
   color: #929292;
+  cursor: pointer;
 }
 
 .header__user-account {

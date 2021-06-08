@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Chat } from 'src/app/models/messenger/chat.model';
-import { MessengerService } from 'src/app/services/messenger.service';
+import { Chat } from '../../models/chat.model';
+import { MessengerService } from '../../services/messenger.service';
 
 @Component({
   selector: 'app-messenger-sidebar',

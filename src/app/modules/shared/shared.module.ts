@@ -5,13 +5,19 @@ import {AngularFireAuthModule} from "@angular/fire/auth";
 import {UserService} from "./services";
 import {AuthOnlyGuard, InauthOnlyGuard} from "./guards";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
+import { HeaderComponent } from "./components/header/header.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    RouterModule
+  ],
+  declarations: [
+    HeaderComponent,
   ],
   providers: [
     UserService,
@@ -20,7 +26,8 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
   ],
   exports: [
     MaterialModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HeaderComponent
   ]
 })
 export class SharedModule {}

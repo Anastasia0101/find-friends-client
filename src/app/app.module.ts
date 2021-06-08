@@ -19,11 +19,7 @@ import { FindFriendsPageComponent } from './components/views/find-friends-page/f
 import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
 import { UserComponent } from './components/user-friends/user/user.component';
 import { UserService } from './services/users.service';
-import { HeaderComponent } from './components/shared/components/header/header.component';
-import { MaterialModule } from './material/material.module';
-import { ChatComponent } from './components/chats/chat/chat.component';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
-import { UserAuthPipe } from './pipes/user-auth.pipe';
 import {SharedModule} from "./modules/shared";
 
 @NgModule({
@@ -35,10 +31,7 @@ import {SharedModule} from "./modules/shared";
     FindFriendsPageComponent,
     UsersListComponent,
     UserComponent,
-    HeaderComponent,
-    ChatComponent,
     UserDialogComponent,
-    UserAuthPipe
   ],
   imports: [
     BrowserModule,
@@ -53,7 +46,6 @@ import {SharedModule} from "./modules/shared";
   providers: [
     UserAuthService,
     UserRegistrationService,
-    MaterialModule,
     UserService
   ],
   bootstrap: [AppComponent]

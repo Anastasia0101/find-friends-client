@@ -1,0 +1,11 @@
+<app-header></app-header>
+<mat-drawer-container class="sidebar">
+  <mat-drawer mode="side" class="sidebar__drawer" opened>
+    <mat-nav-list *ngIf="chats">
+      <a mat-list-item [routerLink]="chat.id" *ngFor="let chat of chats">{{chat.id}}</a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content class="sidebar__drawer-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -20,6 +20,7 @@ export class UsersListComponent implements OnInit {
   getAllUsers(): void {
     this.userService.getUsers().subscribe((data: User[]) => {
       this.usersData = data;
+      console.log(data);
     });
   }
 }

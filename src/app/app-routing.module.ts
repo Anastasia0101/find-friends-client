@@ -31,7 +31,11 @@ const routes: Routes = [
       {
         path: '',
         component: FindFriendsPageComponent
-      }
+      },
+      {
+        path: 'messenger',
+        loadChildren: () => import('./modules/messenger/messenger.module').then(m => m.MessengerModule)
+      },
     ]
   },
   { path: 'edit-profile', component: EditProfilePageComponent },

@@ -16,7 +16,7 @@ interface UserJSON {
 
 @Injectable()
 export class UserService {
-  private readonly currentUser$: Observable<CurrentUser> = this.updateCurrentUser();
+  public readonly currentUser$: Observable<CurrentUser> = this.updateCurrentUser();
   public currentUser: CurrentUser = null;
 
   constructor(

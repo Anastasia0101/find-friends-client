@@ -19,10 +19,6 @@ export class UserService {
     private readonly firestore: AngularFirestore
   ) {}
 
-  public get isAuthenticated$(): Observable<boolean> {
-    return this.currentUser$.pipe(map(user => !!user));
-  }
-
   private updateCurrentUser(): Observable<CurrentUser> {
     return this.fireAuth.authState.pipe(
       switchMap((user: FirebaseUser | null) => user ? this.loadCurrentUser(user) : of(null)),
@@ -35,9 +31,6 @@ export class UserService {
 
     return this.firestore
       .collection<UserJSON>('users', queryCurrentUser)
-      .get().pipe(
-        map(query => UserModel.fromDocument(query.docs[0])!),
-        map(user => user.isRegistrationFinished ? user : null)
-      );
+      .get().pipe(map(query => UserModel.fromDocument(query.docs[0])!));
   }
 }

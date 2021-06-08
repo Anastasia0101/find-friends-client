@@ -41,15 +41,7 @@ export class UserService {
     return this.firestore
       .collection<UserJSON>('users', queryCurrentUser)
       .get().pipe(
-        map(query => ({
-          id: query.docs[0].id,
-          data: query.docs[0].data()
-        })),
-        map(document => new UserModel(
-          document.id,
-          document.data.nickname,
-          document.data.isRegistrationFinished
-        )),
+        map(query => UserModel.fromDocument(query.docs[0])!),
         map(user => user.isRegistrationFinished ? user : null)
       );
   }

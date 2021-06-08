@@ -25,6 +25,7 @@ import { MaterialModule } from './material/material.module';
 import { ChatComponent } from './components/chats/chat/chat.component';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
 import { UserAuthPipe } from './pipes/user-auth.pipe';
+import {SharedModule} from "./modules/shared";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { UserAuthPipe } from './pipes/user-auth.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule,
+    SharedModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],

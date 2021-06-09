@@ -31,13 +31,13 @@ export class CredentialsComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userRegistrationService: UserRegistrationService
+    private registrationService: UserRegistrationService
   ) {}
 
   public saveUserData(): void {
-    this.userRegistrationService.user.email = this.registrationForm.value.email;
-    this.userRegistrationService.user.password = this.registrationForm.value.password;
-    this.userRegistrationService.addNewUser().subscribe({
+    this.registrationService.user.email = this.registrationForm.value.email;
+    this.registrationService.user.password = this.registrationForm.value.password;
+    this.registrationService.addNewUser().subscribe({
       next: () => this.onComplete.next(),
       error: this.onError.bind(this)
     });

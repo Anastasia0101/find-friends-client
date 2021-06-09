@@ -18,11 +18,10 @@ export class SignupPageComponent {
   public readonly Steps = Steps;
 
   constructor(activatedRoute: ActivatedRoute) {
-    const { progress, 'auth-id': authId } = activatedRoute.snapshot.queryParams;
+    const { progress } = activatedRoute.snapshot.queryParams;
 
     if (progress === 'email-verified') {
       this.openStep(Steps.USER_DETAILS);
-      console.log(authId);
     }
   }
 

@@ -12,8 +12,14 @@ export class AuthOnlyGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-    return this.userService.isAuthenticated$.pipe(
-      map(isAuthenticated => isAuthenticated ? true : this.router.createUrlTree(['/auth']))
+    return this.userService.currentUser$.pipe(
+      map(user => {
+        if (!user) return this.router.createUrlTree(['/auth']);
+        if (user.isRegistrationFinished) return true;
+        return this.router.createUrlTree(['/auth/sign-up'], {
+          queryParams: { progress: 'email-verified', id: user.id }
+        });
+      })
     );
   }
 }

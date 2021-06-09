@@ -1,4 +1,7 @@
 export class RegistrationUserModel {
+  public isRegistrationFinished = false;
+
+  public id = '';
   public email = '';
   public password = '';
   public name = '';
@@ -6,5 +9,5 @@ export class RegistrationUserModel {
   public dateOfBirth = '';
   public country = '';
   public sentenceAboutUser = '';
-  public isRegistrationFinished = false;
+  public avatarUrl = '';
 }

@@ -35,3 +35,8 @@
   background-color: #9680bd;
   cursor: default;
 }
+
+.file-upload-label {
+  color: rgba(0,0,0,.54);
+  margin-bottom: 5px;
+}

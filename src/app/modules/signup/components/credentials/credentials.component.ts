@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {UserRegistrationService} from '../../services';
+import {RegistrationProgress} from "../../../shared/models";
 
 @Component({
   selector: 'app-credentials',
@@ -35,6 +36,7 @@ export class CredentialsComponent {
   ) {}
 
   public saveUserData(): void {
+    this.registrationService.user.progress = RegistrationProgress.USER_DETAILS;
     this.registrationService.user.email = this.registrationForm.value.email;
     this.registrationService.user.password = this.registrationForm.value.password;
     this.registrationService.addNewUser().subscribe({

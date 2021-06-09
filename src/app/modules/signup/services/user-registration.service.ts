@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Observable, from, of} from 'rxjs';
+import {Observable, from, of, combineLatest} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {RegistrationUserModel} from '../models';
 import firebase from "firebase";
 import User = firebase.User;
 import {respondWithVoid} from "../../../operators";
-import {first, last, map, switchMap, tap} from "rxjs/operators";
+import {last, map, switchMap, tap} from "rxjs/operators";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {UserJSON} from "../../shared";
@@ -31,7 +31,7 @@ export class UserRegistrationService {
     const data: Partial<UserJSON> = {
       authId: firebaseUser.uid,
       email: this.user.email,
-      isRegistrationFinished: this.user.isRegistrationFinished
+      progress: this.user.progress
     };
     return from(this.firestore.collection('users').add(data)).pipe(
       tap(doc => this.user.id = doc.id),
@@ -57,8 +57,7 @@ export class UserRegistrationService {
   }
 
   public updateUser(): Observable<void> {
-    const data: Partial<RegistrationUserModel> = { ...this.user };
-    delete data.password;
+    const {id, password, ...data} = this.user;
     return from(this.firestore.doc<UserJSON>(`users/${this.user.id}`).update(data));
   }
 }

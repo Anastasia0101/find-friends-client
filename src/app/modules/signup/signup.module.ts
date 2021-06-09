@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import { CredentialsComponent, SignupPageComponent, WaitConfirmationComponent, UserDetailsComponent } from './components';
+import { CredentialsComponent, SignupPageComponent, WaitConfirmationComponent, UserDetailsComponent, UserInterestsComponent } from './components';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {UserRegistrationService} from "./services";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -9,6 +9,8 @@ import {MaterialModule} from "../../material/material.module";
 import {FileUploadModule} from "@iplab/ngx-file-upload";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {RegistrationUserResolver} from "./resolvers";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -24,13 +26,16 @@ import {RegistrationUserResolver} from "./resolvers";
     AngularFireStorageModule,
     ReactiveFormsModule,
     MaterialModule,
-    FileUploadModule
+    FileUploadModule,
+    MatChipsModule,
+    MatButtonModule
   ],
   declarations: [
     CredentialsComponent,
     SignupPageComponent,
     WaitConfirmationComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserInterestsComponent
   ],
   providers: [
     UserRegistrationService,

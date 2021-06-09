@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {UserRegistrationService} from "../../services";
 import {FileUploadControl, FileUploadValidators} from "@iplab/ngx-file-upload";
 import {switchMap, tap} from "rxjs/operators";
+import {RegistrationProgress} from "../../../shared/models";
 
 @Component({
   selector: 'app-user-details',
@@ -36,8 +37,7 @@ export class UserDetailsComponent {
       ]
     ],
     dateOfBirth: ['', Validators.required],
-    country: ['', Validators.required],
-    sentenceAboutUser: ['', Validators.required]
+    country: ['', Validators.required]
   });
 
   constructor(
@@ -49,7 +49,10 @@ export class UserDetailsComponent {
     this.detailsForm.markAllAsTouched();
     if (this.detailsForm.invalid) return;
     this.registrationService.addAvatar(this.avatarControl.value).pipe(
-      tap(() => Object.assign(this.registrationService.user, this.detailsForm.value)),
+      tap(() => {
+        Object.assign(this.registrationService.user, this.detailsForm.value);
+        this.registrationService.user.progress = RegistrationProgress.INTERESTS;
+      }),
       switchMap(() => this.registrationService.updateUser())
     ).subscribe(() => this.onComplete.next(null));
   }

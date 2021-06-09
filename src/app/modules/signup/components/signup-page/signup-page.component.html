@@ -13,5 +13,8 @@
     (onComplete)="openStep(Steps.INTERESTS)"
   ></app-user-details>
 
-  <div *ngSwitchCase="Steps.INTERESTS">Interests step</div>
+  <app-user-interests
+    *ngSwitchCase="Steps.INTERESTS"
+    (onComplete)="complete()"
+  ></app-user-interests>
 </ng-container>

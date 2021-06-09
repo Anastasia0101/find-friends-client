@@ -5,7 +5,7 @@ import {map, switchMap, tap} from "rxjs/operators";
 import {UserJSON, UserModel} from "../models";
 import firebase from "firebase";
 import FirebaseUser = firebase.User;
-import {AngularFirestore, CollectionReference} from "@angular/fire/firestore";
+import {AngularFirestore, CollectionReference, DocumentReference} from "@angular/fire/firestore";
 
 type CurrentUser = UserModel | null;
 

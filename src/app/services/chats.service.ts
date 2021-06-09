@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { from, Observable, of } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+import { combineLatest, from, Observable, of } from "rxjs";
+import { first, map, switchMap } from "rxjs/operators";
 import { Chat } from "../modules/messenger/models/chat.model";
-import { UserService } from "../modules/shared";
+import { UserJSON, UserModel, UserService } from "../modules/shared";
 
 interface NewChat {
   chatId: string;
@@ -21,7 +21,20 @@ export class ChatsService {
     const userId = this.userService.currentUser?.id;
 
     return this.firestore.collection<Chat>('chats').valueChanges({ idField: 'id' }).pipe(
-      map(chats => chats.filter(chat => chat.authorUserId === userId || chat.targetUserId === userId))
+      map(chats => chats.filter(chat => chat.authorUserId === userId || chat.targetUserId === userId)),
+      switchMap(chats => {
+        const usersLoading = chats.map(chat => {
+          const receiverId = userId === chat.authorUserId ? chat.targetUserId : chat.authorUserId;
+          return this.firestore.doc<UserJSON>(`users/${receiverId}`).get().pipe(
+            first(),
+            map((doc): Chat => ({
+              ...chat,
+              receiver: UserModel.fromDocument(doc)
+            }))
+          )
+        });
+        return combineLatest(usersLoading);
+      })
     );
   }
 

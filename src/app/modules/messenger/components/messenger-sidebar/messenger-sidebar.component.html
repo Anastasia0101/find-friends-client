@@ -2,7 +2,10 @@
 <mat-drawer-container class="sidebar">
   <mat-drawer mode="side" class="sidebar__drawer" opened>
     <mat-nav-list *ngIf="chats">
-      <a mat-list-item [routerLink]="chat.id" *ngFor="let chat of chats">{{chat.id}}</a>
+      <a mat-list-item [routerLink]="chat.id" *ngFor="let chat of chats">
+        <img matListAvatar [src]="chat.receiver?.avatarUrl" alt="">
+        <h3 matLine>{{chat.receiver?.nickname}}</h3>
+      </a>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content class="sidebar__drawer-content">

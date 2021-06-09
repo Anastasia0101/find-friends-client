@@ -5,7 +5,8 @@ export interface UserJSON {
   email: string;
   nickname: string;
   isRegistrationFinished: boolean;
-  authId: string
+  authId: string;
+  avatarUrl: string;
 }
 
 export class UserModel {
@@ -14,13 +15,15 @@ export class UserModel {
     return new UserModel(
       doc.id,
       data.nickname,
-      data.isRegistrationFinished
+      data.isRegistrationFinished,
+      data.avatarUrl
     );
   }
 
   constructor(
     public readonly id: string,
     public readonly nickname: string,
-    public readonly isRegistrationFinished: boolean
+    public readonly isRegistrationFinished: boolean,
+    public readonly avatarUrl: string
   ) {}
 }

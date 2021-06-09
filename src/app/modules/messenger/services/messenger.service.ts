@@ -1,16 +1,14 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ChatsService } from 'src/app/services/chats.service';
 import { Chat } from '../models/chat.model';
 
 @Injectable()
 export class MessengerService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private readonly chatsService: ChatsService) { }
 
   getChats(): Observable<Chat[]> {
-    return this.firestore.collection<Chat>('chats').valueChanges({ idField: 'id' })
+    return this.chatsService.loadChats();
   }
 }

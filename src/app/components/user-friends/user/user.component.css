@@ -41,6 +41,7 @@
 
 .action__btn {
   width: 50%;
+  cursor: pointer;
 }
 
 .interests-list {

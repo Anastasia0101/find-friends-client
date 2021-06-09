@@ -18,9 +18,10 @@ import { MainPageComponent } from './components/views/main-page/main-page.compon
 import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
 import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
 import { UserComponent } from './components/user-friends/user/user.component';
-import { UserService } from './services/users.service';
+import { UsersService } from './services/users.service';
 import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
 import {SharedModule} from "./modules/shared";
+import { ChatsService } from './services/chats.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {SharedModule} from "./modules/shared";
   providers: [
     UserAuthService,
     UserRegistrationService,
-    UserService
+    UsersService,
+    ChatsService
   ],
   bootstrap: [AppComponent]
 })

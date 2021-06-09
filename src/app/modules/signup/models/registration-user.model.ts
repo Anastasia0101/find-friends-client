@@ -1,5 +1,7 @@
+import {RegistrationProgress} from "../../shared/models";
+
 export class RegistrationUserModel {
-  public isRegistrationFinished = false;
+  public progress: RegistrationProgress = RegistrationProgress.START;
 
   public id = '';
   public email = '';
@@ -10,4 +12,5 @@ export class RegistrationUserModel {
   public country = '';
   public sentenceAboutUser = '';
   public avatarUrl = '';
+  public interests: string[] = [];
 }

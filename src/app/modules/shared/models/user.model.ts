@@ -1,10 +1,18 @@
 import firebase from "firebase";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
+export enum RegistrationProgress {
+  START = 'start',
+  WAIT_CONFIRMATION = 'wait-confirmation',
+  USER_DETAILS = 'user-details',
+  INTERESTS = 'interests',
+  COMPLETED = 'completed'
+}
+
 export interface UserJSON {
   email: string;
   nickname: string;
-  isRegistrationFinished: boolean;
+  progress: RegistrationProgress;
   authId: string
 }
 
@@ -14,13 +22,17 @@ export class UserModel {
     return new UserModel(
       doc.id,
       data.nickname,
-      data.isRegistrationFinished
+      data.progress
     );
   }
 
   constructor(
     public readonly id: string,
     public readonly nickname: string,
-    public readonly isRegistrationFinished: boolean
+    public readonly progress: RegistrationProgress
   ) {}
+
+  get isRegistrationFinished() {
+    return this.progress === RegistrationProgress.COMPLETED;
+  }
 }

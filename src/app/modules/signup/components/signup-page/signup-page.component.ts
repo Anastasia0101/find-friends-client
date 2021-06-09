@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-
-enum Steps {
-  START,
-  USER_DETAILS,
-  WAIT_CONFIRMATION,
-  INTERESTS
-}
+import {UserRegistrationService} from "../../services";
+import {RegistrationProgress} from "../../../shared/models";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup-page',
@@ -14,18 +9,21 @@ enum Steps {
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent {
-  public currentStep: Steps = Steps.START;
-  public readonly Steps = Steps;
+  public currentStep: RegistrationProgress;
+  public readonly Steps = RegistrationProgress;
 
-  constructor(activatedRoute: ActivatedRoute) {
-    const { progress } = activatedRoute.snapshot.queryParams;
-
-    if (progress === 'email-verified') {
-      this.openStep(Steps.USER_DETAILS);
-    }
+  constructor(
+    private readonly registrationService: UserRegistrationService,
+    private readonly router: Router
+  ) {
+    this.currentStep = this.registrationService.user.progress;
   }
 
-  openStep(step: Steps): void {
+  openStep(step: RegistrationProgress): void {
     this.currentStep = step;
+  }
+
+  complete(): void {
+    this.router.navigate(['/home']);
   }
 }

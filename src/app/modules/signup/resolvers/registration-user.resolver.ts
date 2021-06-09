@@ -14,12 +14,13 @@ export class RegistrationUserResolver implements Resolve<null> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<null> {
-    const { progress, id } = route.queryParams;
-    if (progress !== 'email-verified') return of(null);
-    return this.firestore.doc<UserJSON>(`users/${id}`).valueChanges().pipe(
+    if (!route.queryParamMap.has('id')) return of(null);
+    const userId = route.queryParamMap.get('id')!;
+
+    return this.firestore.doc<UserJSON>(`users/${userId}`).valueChanges().pipe(
       first(),
       map(user => {
-        this.registrationService.user.id = id;
+        this.registrationService.user.id = userId;
         Object.assign(this.registrationService.user, user);
         return null;
       })

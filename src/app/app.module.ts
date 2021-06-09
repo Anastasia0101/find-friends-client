@@ -19,7 +19,6 @@ import { FindFriendsPageComponent } from './components/views/find-friends-page/f
 import { UsersListComponent } from './components/user-friends/users-list/users-list.component';
 import { UserComponent } from './components/user-friends/user/user.component';
 import { UsersService } from './services/users.service';
-import { UserDialogComponent } from './components/user-friends/user-dialog/user-dialog.component';
 import {SharedModule} from "./modules/shared";
 import { ChatsService } from './services/chats.service';
 
@@ -32,7 +31,6 @@ import { ChatsService } from './services/chats.service';
     FindFriendsPageComponent,
     UsersListComponent,
     UserComponent,
-    UserDialogComponent,
   ],
   imports: [
     BrowserModule,

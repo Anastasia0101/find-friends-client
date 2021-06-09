@@ -1,6 +1,6 @@
 <mat-card class="user-card">
   <mat-card-header class="user-card__header header">
-    <img mat-card-avatar src="../../../assets/img/test-img.jpg" alt="test-image" class="header__avatar">
+    <img mat-card-avatar [src]="user.avatarUrl" [alt]="user.name" class="header__avatar">
     <mat-card-title class="header__title">{{ user.nickname}}</mat-card-title>
     <mat-card-subtitle class="header__subtitle">{{ user.country }}</mat-card-subtitle>
     <button class="header__btn btn">
@@ -9,11 +9,7 @@
   </mat-card-header>
   <mat-card-content class="user-card__interests-list interests-list">
     <ul class="interests-list">
-      <li class="interests-list__item">#dancing</li>
-      <li class="interests-list__item">#painting</li>
-      <li class="interests-list__item">#singing</li>
-      <li class="interests-list__item">#tennis</li>
-      <li class="interests-list__item">#tennis</li>
+      <li *ngFor="let interest of user.interests" class="interests-list__item">#{{ interest }}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions class="user-card__action action">

@@ -17,6 +17,8 @@ export interface UserJSON {
   authId: string;
   avatarUrl: string;
   progress: RegistrationProgress;
+  country: string;
+  interests: string[];
 }
 
 export class UserModel {
@@ -27,8 +29,22 @@ export class UserModel {
       data.nickname,
       data.name,
       data.avatarUrl,
+      data.country,
+      data.interests,
       data.progress
     );
+  }
+
+  static fromDocumentData(data: UserJSON & { id: string }): UserModel {
+    return new UserModel(
+      data.id,
+      data.nickname,
+      data.name,
+      data.avatarUrl,
+      data.country,
+      data.interests,
+      data.progress
+    )
   }
 
   constructor(
@@ -36,6 +52,8 @@ export class UserModel {
     public readonly nickname: string,
     public readonly name: string,
     public readonly avatarUrl: string,
+    public readonly country: string,
+    public readonly interests: string[],
     public readonly progress: RegistrationProgress
   ) {}
 

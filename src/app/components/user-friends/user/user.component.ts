@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.model';
 import { ChatsService } from 'src/app/services/chats.service';
+import {UserModel} from "../../../modules/shared";
 
 @Component({
   selector: 'app-user',
@@ -15,10 +15,9 @@ export class UserComponent {
     private router: Router
   ) { }
 
-  @Input() user!: User;
+  @Input() user!: UserModel;
 
   createChat(userId: string): void {
-    console.log(this.user.id);
     this.chatService.createChat(userId).subscribe(({ chatId }) => {
       this.router.navigate(['/home/messenger', chatId])
     });

@@ -8,8 +8,8 @@ import { ChatComponent } from "./components/chat/chat.component";
 import { MessengerService } from "./services/messenger.service";
 import { MessengerSidebarComponent } from "./components/messenger-sidebar/messenger-sidebar.component";
 import { SharedModule } from "../shared";
-import { MessengerPageComponent } from "src/app/components/views/messenger-page/messenger-page.component";
 import { ChatResolver } from "./resolvers/chat.resolver";
+import {MessengerPageComponent} from "./components/messenger-page/messenger-page.component";
 
 @NgModule({
   imports: [

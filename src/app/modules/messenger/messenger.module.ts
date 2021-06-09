@@ -9,6 +9,7 @@ import { MessengerService } from "./services/messenger.service";
 import { MessengerSidebarComponent } from "./components/messenger-sidebar/messenger-sidebar.component";
 import { SharedModule } from "../shared";
 import { MessengerPageComponent } from "src/app/components/views/messenger-page/messenger-page.component";
+import { ChatResolver } from "./resolvers/chat.resolver";
 
 @NgModule({
   imports: [
@@ -21,7 +22,10 @@ import { MessengerPageComponent } from "src/app/components/views/messenger-page/
       children: [
         {
           path: ':id',
-          component: ChatComponent
+          component: ChatComponent,
+          resolve: {
+            // chat: ChatResolver
+          }
         },
       ]
     },
@@ -34,7 +38,8 @@ import { MessengerPageComponent } from "src/app/components/views/messenger-page/
     MessengerPageComponent
   ],
   providers: [
-    MessengerService
+    MessengerService,
+    ChatResolver
   ],
   exports: [
     MessengerSidebarComponent

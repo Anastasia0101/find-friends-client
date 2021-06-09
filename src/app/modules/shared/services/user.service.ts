@@ -33,4 +33,8 @@ export class UserService {
       .collection<UserJSON>('users', queryCurrentUser)
       .get().pipe(map(query => UserModel.fromDocument(query.docs[0])!));
   }
+
+  signOut() {
+    this.fireAuth.signOut();
+  }
 }

@@ -10,9 +10,9 @@ export class ChatComponent {
 
   public chatId: string | null = null;
 
-  constructor(private router: ActivatedRoute) {
-    this.router.params.subscribe((url) => {
-      this.chatId = url.id;
+  constructor(private route: ActivatedRoute) {
+    this.route.data.subscribe((data) => {
+      console.log(data);
     });
   }
 }

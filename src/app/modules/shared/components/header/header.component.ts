@@ -13,12 +13,11 @@ export class HeaderComponent {
 
   constructor(
     private readonly userService: UserService,
-    private userAuthService: UserAuthService,
     private router: Router
   ) { }
 
   clickedBtnLogout(): void {
-    this.userAuthService.deleteUserToken();
-    void this.router.navigateByUrl('main');
+    this.userService.signOut();
+    void this.router.navigateByUrl('auth');
   }
 }

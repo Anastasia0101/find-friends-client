@@ -10,7 +10,7 @@
   </nav>
   <div class="header__user-account user-account" *ngIf="user$ | async as user; else profilePlaceholder">
     <p class="user-account__nickname">{{ user.nickname }}</p>
-    <img src="../../../../../assets/img/test-img.jpg" alt="" class="user-account__avatar circle">
+    <img [src]="user.avatarUrl" [alt]="user.name" class="user-account__avatar circle">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="user-account__menu">
       <mat-icon>more_vert</mat-icon>
     </button>

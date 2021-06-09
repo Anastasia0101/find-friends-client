@@ -11,6 +11,7 @@ export enum RegistrationProgress {
 
 export interface UserJSON {
   email: string;
+  name: string;
   nickname: string;
   isRegistrationFinished: boolean;
   authId: string;
@@ -24,6 +25,7 @@ export class UserModel {
     return new UserModel(
       doc.id,
       data.nickname,
+      data.name,
       data.avatarUrl,
       data.progress
     );
@@ -32,6 +34,7 @@ export class UserModel {
   constructor(
     public readonly id: string,
     public readonly nickname: string,
+    public readonly name: string,
     public readonly avatarUrl: string,
     public readonly progress: RegistrationProgress
   ) {}

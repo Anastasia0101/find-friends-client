@@ -6,8 +6,7 @@ export interface UserJSON {
 }
 
 export class UserModel {
-  static fromDocument(doc: firebase.firestore.DocumentSnapshot<UserJSON>): UserModel | null {
-    if (!doc.exists) return null;
+  static fromDocument(doc: firebase.firestore.DocumentSnapshot<UserJSON>): UserModel {
     const data = doc.data()!;
     return new UserModel(
       doc.id,

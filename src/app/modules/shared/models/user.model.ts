@@ -24,24 +24,16 @@ export class UserModel {
     return new UserModel(
       doc.id,
       data.nickname,
-<<<<<<< HEAD
-      data.isRegistrationFinished,
-      data.avatarUrl
-=======
+      data.avatarUrl,
       data.progress
->>>>>>> 779749b6d374cf00155fd75aa90b193d961ef0af
     );
   }
 
   constructor(
     public readonly id: string,
     public readonly nickname: string,
-<<<<<<< HEAD
-    public readonly isRegistrationFinished: boolean,
-    public readonly avatarUrl: string
-=======
+    public readonly avatarUrl: string,
     public readonly progress: RegistrationProgress
->>>>>>> 779749b6d374cf00155fd75aa90b193d961ef0af
   ) {}
 
   get isRegistrationFinished() {

@@ -12,7 +12,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { UserRegistrationService } from './services/user-registration.service';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
-import { UsersService } from './services/users.service';
 import {SharedModule} from "./modules/shared";
 import { ChatsService } from './services/chats.service';
 
@@ -33,7 +32,6 @@ import { ChatsService } from './services/chats.service';
   ],
   providers: [
     UserRegistrationService,
-    UsersService,
     ChatsService
   ],
   bootstrap: [AppComponent]

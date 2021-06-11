@@ -5,6 +5,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {SearchPageComponent, SearchUsersComponent, SearchUsersItemComponent} from "./components";
 import {SharedModule} from "../shared";
 import {MaterialModule} from "../../material/material.module";
+import {UserSearchService} from "./services";
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import {MaterialModule} from "../../material/material.module";
     SearchPageComponent,
     SearchUsersComponent,
     SearchUsersItemComponent
+  ],
+  providers: [
+    UserSearchService
   ]
 })
 export class SearchModule {}

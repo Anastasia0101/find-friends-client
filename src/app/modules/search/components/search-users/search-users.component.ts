@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UsersService} from "../../../../services/users.service";
+import {UserSearchService} from "../../services/user-search.service";
 
 @Component({
   selector: 'app-search-users',
@@ -7,7 +7,7 @@ import {UsersService} from "../../../../services/users.service";
   styleUrls: ['./search-users.component.css']
 })
 export class SearchUsersComponent {
-  public readonly users$ = this.userService.getUsers();
+  public readonly users$ = this.searchService.search();
 
-  constructor(private userService: UsersService) {}
+  constructor(private searchService: UserSearchService) {}
 }

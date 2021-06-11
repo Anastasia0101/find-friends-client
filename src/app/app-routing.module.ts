@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
-import { FindFriendsPageComponent } from './components/views/find-friends-page/find-friends-page.component';
 import {AuthOnlyGuard, InauthOnlyGuard} from "./modules/shared";
 
 const routes: Routes = [
@@ -30,16 +29,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: FindFriendsPageComponent
+        pathMatch: 'full',
+        redirectTo: '/home/search'
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('./modules/search').then(m => m.SearchModule)
       },
       {
         path: 'messenger',
-        loadChildren: () => import('./modules/messenger/messenger.module').then(m => m.MessengerModule)
+        loadChildren: () => import('./modules/messenger').then(m => m.MessengerModule)
       },
     ]
   },
   { path: 'edit-profile', component: EditProfilePageComponent },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home/search', pathMatch: 'full' }
 ];
 
 @NgModule({

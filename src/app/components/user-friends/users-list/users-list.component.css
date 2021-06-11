@@ -1,8 +1,0 @@
-.container__users-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.users-list__user {
-  list-style: none;
-}

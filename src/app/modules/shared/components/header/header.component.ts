@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserAuthService } from 'src/app/services/user-auth.service';
 import {UserService} from "../../services";
 
 @Component({
@@ -13,7 +12,7 @@ export class HeaderComponent {
 
   constructor(
     private readonly userService: UserService,
-    private router: Router
+    private readonly router: Router
   ) { }
 
   clickedBtnLogout(): void {

@@ -1,28 +1,27 @@
 <header class="header">
   <div class="header__logo logo">
     <div class="logo__circle circle"></div>
-    <a routerLink="/find-friends" class="logo__text">Find friends</a>
+    <a routerLink="/home" class="logo__text">Find friends</a>
   </div>
   <nav class="header__navbar navbar">
     <a routerLink="/account" class="navbar__item">Account</a>
     <a routerLink="/home/messenger" class="navbar__item">Chats</a>
-    <a routerLink="/find-friends" class="navbar__item">Search</a>
+    <a routerLink="/home/search" class="navbar__item">Search</a>
   </nav>
   <div class="header__user-account user-account" *ngIf="user$ | async as user; else profilePlaceholder">
     <p class="user-account__nickname">{{ user.nickname }}</p>
     <img [src]="user.avatarUrl" [alt]="user.name" class="user-account__avatar circle">
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="user-account__menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="user-account__menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <!-- <button mat-menu-item>
-        <span>Setting</span>
-      </button> -->
       <button mat-menu-item (click)="clickedBtnLogout()">
         <span>Logout</span>
       </button>
     </mat-menu>
   </div>
-  <ng-template #profilePlaceholder><div></div></ng-template>
+  <ng-template #profilePlaceholder>
+    <div style="width: 150px; height: 51px"></div>
+  </ng-template>
 </header>
 <div class="line"></div>

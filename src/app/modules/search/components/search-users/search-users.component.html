@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="container__users-list users-list">
     <li *ngFor="let user of users$ | async " class="users-list__user">
-      <app-user [user]="user"></app-user>
+      <app-search-users-item [user]="user"></app-search-users-item>
     </li>
   </ul>
 </div>

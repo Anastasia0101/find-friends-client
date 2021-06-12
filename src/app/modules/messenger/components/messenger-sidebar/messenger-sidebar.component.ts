@@ -1,30 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Chat } from '../../models/chat.model';
-import { MessengerService } from '../../services/messenger.service';
+import { Component } from '@angular/core';
+import { ChatsService } from "../../../../services/chats.service";
 
 @Component({
   selector: 'app-messenger-sidebar',
   templateUrl: './messenger-sidebar.component.html',
   styleUrls: ['./messenger-sidebar.component.css']
 })
-export class MessengerSidebarComponent implements OnInit {
+export class MessengerSidebarComponent {
+  chats$ = this.chatsService.loadChats();
 
-  chats: Chat[] = [];
-
-  constructor(private messengerService: MessengerService) { }
-
-  ngOnInit(): void {
-    this.getChats();
-  }
-
-  getChats(): void {
-    this.messengerService.getChats().subscribe((data: Chat[]) => {
-      this.chats = data;
-      console.log(this.chats);
-    });
-  }
-
-  onChooseChat(chat: Chat): void {
-    console.log(chat);
-  }
+  constructor(private readonly chatsService: ChatsService) { }
 }

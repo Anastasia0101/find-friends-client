@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {MaterialModule} from "../../material/material.module";
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./components";
 import {LoginService} from "./services";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MaterialModule} from "../shared";
 
 @NgModule({
   imports: [

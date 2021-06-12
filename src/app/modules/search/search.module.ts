@@ -3,8 +3,7 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {SearchPageComponent, SearchUsersComponent, SearchUsersItemComponent} from "./components";
-import {SharedModule} from "../shared";
-import {MaterialModule} from "../../material/material.module";
+import {SharedModule, MaterialModule} from "../shared";
 import {UserSearchService} from "./services";
 
 @NgModule({

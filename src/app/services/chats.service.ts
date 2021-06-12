@@ -57,7 +57,17 @@ export class ChatsService {
     );
   }
 
-  loadChatById(chatId: string): Observable<Chat | undefined> {
-    return this.firestore.doc<Chat>(`chats/${chatId}`).valueChanges({idField: 'id'});
+  loadChatById(chatId: string): Observable<Chat | null> {
+    return this.firestore.doc<Chat>(`chats/${chatId}`).get().pipe(
+      map(doc => {
+        if (!doc.exists) return null;
+
+        return ({
+          id: doc.id,
+          targetUserId: doc.get('targetUserId'),
+          authorUserId: doc.get('targetUserId')
+        });
+      })
+    );
   }
 }

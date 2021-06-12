@@ -5,7 +5,8 @@ import {map, switchMap, tap} from "rxjs/operators";
 import {UserJSON, UserModel} from "../models";
 import firebase from "firebase";
 import FirebaseUser = firebase.User;
-import {AngularFirestore, CollectionReference, DocumentReference} from "@angular/fire/firestore";
+import {AngularFirestore, CollectionReference} from "@angular/fire/firestore";
+import DocumentReference = firebase.firestore.DocumentReference;
 
 type CurrentUser = UserModel | null;
 
@@ -36,5 +37,15 @@ export class UserService {
 
   signOut() {
     this.fireAuth.signOut();
+  }
+
+  get currentUserRef(): DocumentReference<UserJSON> {
+    return this.firestore.doc<UserJSON>(`users/${this.currentUser!.id}`).ref;
+  }
+
+  loadUser(userId: string): Observable<UserModel> {
+    return this.firestore.doc<UserJSON>(`users/${userId}`).get().pipe(
+      map(doc => UserModel.fromDocument(doc))
+    );
   }
 }

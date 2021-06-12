@@ -3,10 +3,11 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {ReactiveFormsModule} from "@angular/forms";
-import { ChatComponent, MessengerSidebarComponent, MessengerPageComponent, ChatSenderComponent} from "./components";
+import { ChatComponent, MessengerSidebarComponent, MessengerPageComponent, ChatSenderComponent, ChatMessageComponent} from "./components";
 import { SharedModule, MaterialModule } from "../shared";
 import { ChatResolver } from "./resolvers";
 import {ChatService, ChatsService} from "./services";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -15,25 +16,28 @@ import {ChatService, ChatsService} from "./services";
     AngularFireAuthModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: '', component: MessengerPageComponent,
-      children: [
-        {
-          path: ':id',
-          component: ChatComponent,
-          resolve: {
-            chat: ChatResolver
-          }
-        },
-      ]
-    },
+      {
+        path: '', component: MessengerPageComponent,
+        children: [
+          {
+            path: ':id',
+            component: ChatComponent,
+            resolve: {
+              chat: ChatResolver
+            }
+          },
+        ]
+      },
     ]),
-    SharedModule
+    SharedModule,
+    MatButtonModule
   ],
   declarations: [
     ChatComponent,
     MessengerSidebarComponent,
     MessengerPageComponent,
-    ChatSenderComponent
+    ChatSenderComponent,
+    ChatMessageComponent
   ],
   providers: [
     ChatResolver,

@@ -35,6 +35,11 @@
   cursor: pointer;
 }
 
+.navbar__item--active {
+  color: #474747;
+  cursor: default;
+}
+
 .header__user-account {
   display: flex;
   align-items: center;

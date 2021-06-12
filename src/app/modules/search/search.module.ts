@@ -5,7 +5,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {SearchPageComponent, SearchUsersComponent, SearchUsersItemComponent} from "./components";
 import {SharedModule, MaterialModule} from "../shared";
 import {UserSearchService} from "./services";
-import {ChatsService} from "../messenger";
+import {ChatsService} from "../messenger/services";
 
 @NgModule({
   imports: [

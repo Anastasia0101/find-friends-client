@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+}
+
+.message {
+  min-width: 100px;
+  max-width: 50%;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.message--current-user {
+  margin-left: auto;
+}

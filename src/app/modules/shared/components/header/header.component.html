@@ -4,9 +4,14 @@
     <a routerLink="/home" class="logo__text">Find friends</a>
   </div>
   <nav class="header__navbar navbar">
-    <a routerLink="/account" class="navbar__item">Account</a>
-    <a routerLink="/home/messenger" class="navbar__item">Chats</a>
-    <a routerLink="/home/search" class="navbar__item">Search</a>
+    <a
+      *ngFor="let link of navigationLinks"
+      [routerLink]="link.href"
+      class="navbar__item"
+      routerLinkActive="navbar__item--active"
+    >
+      {{ link.title }}
+    </a>
   </nav>
   <div class="header__user-account user-account" *ngIf="user$ | async as user; else profilePlaceholder">
     <p class="user-account__nickname">{{ user.nickname }}</p>

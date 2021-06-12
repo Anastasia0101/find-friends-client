@@ -9,7 +9,13 @@
   </mat-card-header>
   <mat-card-content class="user-card__interests-list interests-list">
     <ul class="interests-list">
-      <li *ngFor="let interest of user.interests" class="interests-list__item">#{{ interest }}</li>
+      <li
+        *ngFor="let interest of user.interests"
+        class="interests-list__item"
+        [class.interests-list__item--matched]="interest.isMatch"
+      >
+        #{{ interest.name }}
+      </li>
     </ul>
   </mat-card-content>
   <mat-card-actions class="user-card__action action">

@@ -4,11 +4,6 @@ import {UserJSON, UserModel, UserService} from "../../shared";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {map} from "rxjs/operators";
 
-interface SearchWrapper {
-  user: UserModel;
-  matches: number;
-}
-
 @Injectable()
 export class UserSearchService {
   constructor(
@@ -23,22 +18,14 @@ export class UserSearchService {
     ]).pipe(
       map(([users]) => users.filter(user => user.id !== this.userService.currentUser?.id)),
       map(users => users
-          .map((userJSON): SearchWrapper => {
+          .map((userJSON): UserModel => {
             const user = UserModel.fromDocumentData(userJSON);
-            return {user, matches: this.countMatches(user)};
+            user.countInterestMatches(this.userService.currentUser!);
+            return user;
           })
-          .filter(user => !!user.matches)
-          .sort((user1, user2) => user2.matches - user1.matches)
-          .map(user => user.user)
+          .filter(user => !!user.interestsMatched)
+          .sort((user1, user2) => user2.interestsMatched - user1.interestsMatched)
       )
     );
-  }
-
-  public countMatches(user: UserModel): number {
-    let counter = 0;
-    this.userService.currentUser?.interests.forEach(interest => {
-      if (user.interests.includes(interest)) counter++;
-    });
-    return counter;
   }
 }

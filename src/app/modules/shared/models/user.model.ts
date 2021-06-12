@@ -21,18 +21,34 @@ export interface UserJSON {
   interests: string[];
 }
 
+interface Interest {
+  name: string;
+  isMatch?: boolean;
+}
+
 export class UserModel {
+  public interestsMatched: number = 0;
+
+  constructor(
+    public readonly id: string,
+    public readonly nickname: string,
+    public readonly name: string,
+    public readonly avatarUrl: string,
+    public readonly country: string,
+    public readonly interests: Interest[],
+    public readonly progress: RegistrationProgress
+  ) {
+  }
+
+  public get isRegistrationFinished() {
+    return this.progress === RegistrationProgress.COMPLETED;
+  }
+
   static fromDocument(doc: DocumentSnapshot<UserJSON>): UserModel {
-    const data = doc.data()!;
-    return new UserModel(
-      doc.id,
-      data.nickname,
-      data.name,
-      data.avatarUrl,
-      data.country,
-      data.interests,
-      data.progress
-    );
+    return UserModel.fromDocumentData({
+      ...doc.data()!,
+      id: doc.id
+    });
   }
 
   static fromDocumentData(data: UserJSON & { id: string }): UserModel {
@@ -42,22 +58,22 @@ export class UserModel {
       data.name,
       data.avatarUrl,
       data.country,
-      data.interests,
+      data.interests.map(name => ({name})),
       data.progress
     )
   }
 
-  constructor(
-    public readonly id: string,
-    public readonly nickname: string,
-    public readonly name: string,
-    public readonly avatarUrl: string,
-    public readonly country: string,
-    public readonly interests: string[],
-    public readonly progress: RegistrationProgress
-  ) {}
+  public isInterestMatch(interest: Interest): boolean {
+    const interestName = interest.name.toLowerCase();
+    return this.interests.some(interest => interest.name.toLowerCase() === interestName);
+  }
 
-  get isRegistrationFinished() {
-    return this.progress === RegistrationProgress.COMPLETED;
+  public countInterestMatches(currentUser: UserModel): void {
+    this.interests
+      .filter(interest => currentUser.isInterestMatch(interest))
+      .forEach(interest => {
+        interest.isMatch = true;
+        this.interestsMatched++;
+      });
   }
 }

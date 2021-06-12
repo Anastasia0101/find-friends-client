@@ -55,6 +55,10 @@
   margin: 5px;
 }
 
+.interests-list__item:not(.interests-list__item--matched) {
+  color: #A7A7A7;
+}
+
 .interests-list__icon {
   display: flex;
   flex-direction: column;

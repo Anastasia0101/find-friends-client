@@ -1,0 +1,6 @@
+<form (submit)="send($event)">
+  <mat-form-field>
+    <mat-label>Type your message here...</mat-label>
+    <input  matInput [formControl]="messageControl">
+  </mat-form-field>
+</form>

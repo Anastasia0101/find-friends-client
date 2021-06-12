@@ -3,10 +3,10 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {ReactiveFormsModule} from "@angular/forms";
-import { ChatComponent, MessengerSidebarComponent, MessengerPageComponent } from "./components";
+import { ChatComponent, MessengerSidebarComponent, MessengerPageComponent, ChatSenderComponent} from "./components";
 import { SharedModule, MaterialModule } from "../shared";
 import { ChatResolver } from "./resolvers";
-import { ChatService } from "./services";
+import {ChatService, ChatsService} from "./services";
 
 @NgModule({
   imports: [
@@ -32,11 +32,13 @@ import { ChatService } from "./services";
   declarations: [
     ChatComponent,
     MessengerSidebarComponent,
-    MessengerPageComponent
+    MessengerPageComponent,
+    ChatSenderComponent
   ],
   providers: [
     ChatResolver,
-    ChatService
+    ChatService,
+    ChatsService
   ],
   exports: [
     MessengerSidebarComponent

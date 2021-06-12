@@ -2,17 +2,17 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, Router} from "@angular/router";
 import {EMPTY, Observable, of} from "rxjs";
 import {switchMap} from "rxjs/operators";
-import {Chat} from "../models/chat.model";
-import {ChatService} from "../services/chat.service";
+import {ChatModel} from "../models";
+import {ChatService} from "../services";
 
 @Injectable()
-export class ChatResolver implements Resolve<Chat | null> {
+export class ChatResolver implements Resolve<ChatModel | null> {
   constructor(
     private chatService: ChatService,
     private router: Router
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Chat | null> {
+  resolve(route: ActivatedRouteSnapshot): Observable<ChatModel | null> {
     return this.chatService.activateChat(route.params.id).pipe(
       switchMap((chat) => {
         if (chat) return of(chat);

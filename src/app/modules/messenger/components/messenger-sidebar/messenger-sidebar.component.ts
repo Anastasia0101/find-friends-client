@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChatsService } from "../../../../services/chats.service";
+import {ChatsService} from "../../services";
 
 @Component({
   selector: 'app-messenger-sidebar',

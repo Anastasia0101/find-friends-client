@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
-import {Chat} from "../models/chat.model";
+import {ChatModel} from "../models";
 import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
-import {ChatsService} from "../../../services/chats.service";
+import {tap} from "rxjs/operators";
+import {ChatsService} from "./chats.service";
 
-type ActiveChat = Chat | null;
+type ActiveChat = ChatModel | null;
 
 @Injectable()
 export class ChatService {
@@ -16,5 +16,9 @@ export class ChatService {
     return this.chatsService.loadChatById(chatId).pipe(
       tap(chat => this.activeChat = chat)
     );
+  }
+
+  send(text: string) {
+
   }
 }

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {ChatsService} from "../../../../services/chats.service";
 import {Router} from "@angular/router";
 import {UserModel} from "../../../shared";
+import {ChatsService} from "../../../messenger";
 
 @Component({
   selector: 'app-search-users-item',

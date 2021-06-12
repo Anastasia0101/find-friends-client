@@ -1,6 +1,8 @@
-<div *ngIf="user" class="container">
+<app-header></app-header>
+
+<div class="container">
   <h2 class="container__title">EDIT YOUR PROFILE</h2>
-  <form [formGroup]="registrationForm" class="container__form form" (ngSubmit)="updateFormValue()">
+  <form [formGroup]="registrationForm" class="container__form form" (ngSubmit)="saveUserData()">
     <mat-form-field>
       <mat-label>Your Name:</mat-label>
       <input matInput formControlName="name" required>

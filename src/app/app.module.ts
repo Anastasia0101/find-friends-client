@@ -10,14 +10,11 @@ import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { UserRegistrationService } from './services/user-registration.service';
-import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import {SharedModule} from "./modules/shared";
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditProfilePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +25,6 @@ import {SharedModule} from "./modules/shared";
     SharedModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
-  ],
-  providers: [
-    UserRegistrationService
   ],
   bootstrap: [AppComponent]
 })

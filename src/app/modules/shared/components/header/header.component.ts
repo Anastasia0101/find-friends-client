@@ -15,7 +15,7 @@ interface NavigationLink {
 export class HeaderComponent {
   public readonly user$ = this.userService.currentUser$;
   public readonly navigationLinks: NavigationLink[] = [
-    { title: 'Account', href: '/account' },
+    { title: 'Account', href: '/home/account' },
     { title: 'Chats', href: '/home/messenger' },
     { title: 'Search', href: '/home/search' }
   ];

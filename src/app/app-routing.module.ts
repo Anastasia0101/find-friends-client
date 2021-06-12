@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import {AuthOnlyGuard, InauthOnlyGuard} from "./modules/shared";
 
 const routes: Routes = [
@@ -33,16 +32,19 @@ const routes: Routes = [
         redirectTo: '/home/search'
       },
       {
-        path: 'search',
-        loadChildren: () => import('./modules/search').then(m => m.SearchModule)
+        path: 'account',
+        loadChildren: () => import('./modules/account').then(m => m.AccountModule)
       },
       {
         path: 'messenger',
         loadChildren: () => import('./modules/messenger').then(m => m.MessengerModule)
       },
+      {
+        path: 'search',
+        loadChildren: () => import('./modules/search').then(m => m.SearchModule)
+      }
     ]
   },
-  { path: 'edit-profile', component: EditProfilePageComponent },
   { path: '**', redirectTo: '/home/search', pathMatch: 'full' }
 ];
 

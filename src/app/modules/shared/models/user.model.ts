@@ -23,7 +23,7 @@ export interface UserJSON {
 
 interface Interest {
   name: string;
-  isMatch?: boolean;
+  isMatch: boolean;
 }
 
 export class UserModel {
@@ -35,7 +35,7 @@ export class UserModel {
     public readonly name: string,
     public readonly avatarUrl: string,
     public readonly country: string,
-    public readonly interests: Interest[],
+    public interests: Interest[],
     public readonly progress: RegistrationProgress
   ) {
   }
@@ -58,7 +58,7 @@ export class UserModel {
       data.name,
       data.avatarUrl,
       data.country,
-      data.interests.map(name => ({name})),
+      data.interests.map(name => ({name, isMatch: false})),
       data.progress
     )
   }
@@ -75,5 +75,9 @@ export class UserModel {
         interest.isMatch = true;
         this.interestsMatched++;
       });
+    this.interests = this.interests.sort((i1, i2) => {
+      if (i1.isMatch === i2.isMatch) return 0;
+      return i1.isMatch ? -1 : 1;
+    });
   }
 }

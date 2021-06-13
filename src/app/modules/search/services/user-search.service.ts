@@ -21,6 +21,7 @@ export class UserSearchService {
           .map((userJSON): UserModel => {
             const user = UserModel.fromDocumentData(userJSON);
             user.countInterestMatches(this.userService.currentUser!);
+            user.isFavorite = this.userService.currentUser!.isFavoriteUser(user);
             return user;
           })
           .filter(user => !!user.interestsMatched)

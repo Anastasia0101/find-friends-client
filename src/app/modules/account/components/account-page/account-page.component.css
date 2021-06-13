@@ -18,5 +18,9 @@
 
 .container {
   font-size: 16px;
-  padding-top: 40px;
+  padding-top: 20px;
+}
+
+.container__title {
+  margin-bottom: 40px;
 }

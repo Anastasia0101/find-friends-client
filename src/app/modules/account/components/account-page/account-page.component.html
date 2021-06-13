@@ -15,7 +15,7 @@
   </mat-drawer>
   <mat-drawer-content class="sidebar__drawer-content">
     <div class="container">
-      <h2 class="container__title">EDIT YOUR PROFILE</h2>
+      <h2 class="container__title" *ngIf="title">{{ title }}</h2>
 
       <router-outlet></router-outlet>
     </div>

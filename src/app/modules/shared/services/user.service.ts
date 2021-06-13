@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AngularFireAuth} from "@angular/fire/auth";
-import {Observable, of} from "rxjs";
+import {from, Observable, of} from "rxjs";
 import {map, switchMap, tap} from "rxjs/operators";
 import {UserJSON, UserModel} from "../models";
 import firebase from "firebase";
@@ -12,7 +12,7 @@ type CurrentUser = UserModel | null;
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public readonly currentUser$: Observable<CurrentUser> = this.updateCurrentUser();
+  public readonly currentUser$: Observable<CurrentUser> = this.createCurrentUserStream();
   public currentUser: CurrentUser = null;
 
   constructor(
@@ -20,7 +20,7 @@ export class UserService {
     private readonly firestore: AngularFirestore
   ) {}
 
-  private updateCurrentUser(): Observable<CurrentUser> {
+  private createCurrentUserStream(): Observable<CurrentUser> {
     return this.fireAuth.authState.pipe(
       switchMap((user: FirebaseUser | null) => user ? this.loadCurrentUser(user) : of(null)),
       tap(user => this.currentUser = user)
@@ -40,12 +40,20 @@ export class UserService {
   }
 
   get currentUserRef(): DocumentReference<UserJSON> {
-    return this.firestore.doc<UserJSON>(`users/${this.currentUser!.id}`).ref;
+    return this.makeUserRef(this.currentUser!.id);
+  }
+
+  makeUserRef(userId: string): DocumentReference<UserJSON> {
+    return this.firestore.doc<UserJSON>(`users/${userId}`).ref
   }
 
   loadUser(userId: string): Observable<UserModel | null> {
     return this.firestore.doc<UserJSON>(`users/${userId}`).get().pipe(
       map(doc => doc.exists ? UserModel.fromDocument(doc) : null)
     );
+  }
+
+  public updateCurrentUser(attrs: Partial<UserJSON>): Observable<void> {
+    return from(this.currentUserRef.update(attrs));
   }
 }

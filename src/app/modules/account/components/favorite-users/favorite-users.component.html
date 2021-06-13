@@ -1,0 +1,11 @@
+<div class="container" *ngIf="users$ | async as users">
+  <ul class="container__users-list users-list" *ngIf="users.length; else placeholder">
+    <li *ngFor="let user of users" class="users-list__user">
+      <app-favorite-users-item [user]="user" (onRemoved)="loadUsers()"></app-favorite-users-item>
+    </li>
+  </ul>
+
+  <ng-template #placeholder>
+    <h3 class="placeholder">There no users yet</h3>
+  </ng-template>
+</div>

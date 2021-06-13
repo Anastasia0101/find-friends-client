@@ -7,6 +7,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { RouterModule } from "@angular/router";
 import {MaterialModule} from "./material.module";
 import {CurrentUserResolver} from "./resolvers";
+import {FavoritesService} from "./services";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {CurrentUserResolver} from "./resolvers";
   providers: [
     AuthOnlyGuard,
     InauthOnlyGuard,
-    CurrentUserResolver
+    CurrentUserResolver,
+    FavoritesService
   ],
   exports: [
     MaterialModule,

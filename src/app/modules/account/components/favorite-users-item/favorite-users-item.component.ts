@@ -1,15 +1,15 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {FavoritesService, UserModel} from "../../../shared";
 import {ChatsService} from "../../../messenger/services";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-search-users-item',
-  templateUrl: './search-users-item.component.html',
-  styleUrls: ['./search-users-item.component.css']
+  selector: 'app-favorite-users-item',
+  templateUrl: './favorite-users-item.component.html',
+  styleUrls: ['./favorite-users-item.component.css']
 })
-export class SearchUsersItemComponent {
+export class FavoriteUsersItemComponent {
   constructor(
     private readonly chatService: ChatsService,
     private readonly favoritesService: FavoritesService,
@@ -17,23 +17,22 @@ export class SearchUsersItemComponent {
     private readonly toastr: ToastrService
   ) { }
 
-  @Input() user!: UserModel;
+  @Input()
+  public user!: UserModel;
 
-  createChat(): void {
-    this.chatService.createChat(this.user.id).subscribe(({ chatId }) => {
+  @Output()
+  private onRemoved: EventEmitter<null> = new EventEmitter<null>();
+
+  createChat(userId: string): void {
+    this.chatService.createChat(userId).subscribe(({ chatId }) => {
       this.router.navigate(['/home/messenger', chatId])
-    });
-  }
-
-  addToFavorites() {
-    this.favoritesService.addUser(this.user.id).subscribe(() => {
-      this.toastr.success('Added to Favorites')
     });
   }
 
   removeFromFavorites() {
     this.favoritesService.removeUser(this.user.id).subscribe(() => {
       this.toastr.success('Removed from Favorites')
+      this.onRemoved.emit();
     })
   }
 }

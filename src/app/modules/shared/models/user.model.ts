@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 import Timestamp = firebase.firestore.Timestamp;
+import DocumentReference = firebase.firestore.DocumentReference;
 
 export enum RegistrationProgress {
   START = 'start',
@@ -21,6 +22,7 @@ export interface UserJSON {
   country: string;
   dateOfBirth: Date;
   interests: string[];
+  favoriteUsers: DocumentReference[]
   sentenceAboutUser: string;
 }
 
@@ -31,6 +33,7 @@ interface Interest {
 
 export class UserModel {
   public interestsMatched: number = 0;
+  public isFavorite: boolean = false;
 
   constructor(
     public readonly id: string,
@@ -40,7 +43,8 @@ export class UserModel {
     public readonly avatarUrl: string,
     public readonly country: string,
     public readonly dateOfBirth: Date,
-    public interests: Interest[],
+    public readonly interests: Interest[],
+    public readonly favoriteUsers: DocumentReference[],
     public readonly sentenceAboutUser: string,
     public readonly progress: RegistrationProgress
   ) {
@@ -67,6 +71,7 @@ export class UserModel {
       data.country,
       (data.dateOfBirth as unknown as Timestamp).toDate(),
       data.interests.map(name => ({name, isMatch: false})),
+      data.favoriteUsers,
       data.sentenceAboutUser,
       data.progress
     )
@@ -84,9 +89,13 @@ export class UserModel {
         interest.isMatch = true;
         this.interestsMatched++;
       });
-    this.interests = this.interests.sort((i1, i2) => {
+    this.interests.sort((i1, i2) => {
       if (i1.isMatch === i2.isMatch) return 0;
       return i1.isMatch ? -1 : 1;
     });
+  }
+
+  public isFavoriteUser(user: UserModel): boolean {
+    return this.favoriteUsers.some(userRef => userRef.id === user.id);
   }
 }

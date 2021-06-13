@@ -1,7 +1,14 @@
 import {NgModule} from "@angular/core";
 import {SharedModule} from "../shared";
 import {RouterModule} from "@angular/router";
-import { AccountPageComponent, AccountCredentialsComponent, AccountDetailsComponent, AccountInterestsComponent } from './components';
+import {
+  AccountPageComponent,
+  AccountCredentialsComponent,
+  AccountDetailsComponent,
+  AccountInterestsComponent,
+  FavoriteUsersComponent,
+  FavoriteUsersItemComponent
+} from './components';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
@@ -10,6 +17,7 @@ import {AccountService} from "./services";
 import {FileUploadModule} from "@iplab/ngx-file-upload";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
+import {ChatsService} from "../messenger/services";
 
 @NgModule({
   imports: [
@@ -22,19 +30,27 @@ import {MatButtonModule} from "@angular/material/button";
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: 'credentials'
+            redirectTo: 'favorites'
+          },
+          {
+            path: 'favorites',
+            component: FavoriteUsersComponent,
+            data: { title: 'FAVORITE USERS' }
           },
           {
             path: 'credentials',
-            component: AccountCredentialsComponent
+            component: AccountCredentialsComponent,
+            data: { title: 'EDIT CREDENTIALS' }
           },
           {
             path: 'details',
-            component: AccountDetailsComponent
+            component: AccountDetailsComponent,
+            data: { title: 'EDIT PERSONAL INFO' }
           },
           {
             path: 'interests',
-            component: AccountInterestsComponent
+            component: AccountInterestsComponent,
+            data: { title: 'EDIT YOUR INTERESTS' }
           }
         ]
       }
@@ -51,10 +67,13 @@ import {MatButtonModule} from "@angular/material/button";
     AccountPageComponent,
     AccountCredentialsComponent,
     AccountDetailsComponent,
-    AccountInterestsComponent
+    AccountInterestsComponent,
+    FavoriteUsersComponent,
+    FavoriteUsersItemComponent
   ],
   providers: [
-    AccountService
+    AccountService,
+    ChatsService
   ]
 })
 export class AccountModule {}

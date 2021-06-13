@@ -17,7 +17,7 @@ export class AccountService {
   ) {}
 
   public updateUser(attrs: Partial<UserJSON>): Observable<void> {
-    return from(this.userService.currentUserRef.update(attrs));
+    return this.userService.updateCurrentUser(attrs);
   }
 
   public updateEmail(email: string): Observable<void> {

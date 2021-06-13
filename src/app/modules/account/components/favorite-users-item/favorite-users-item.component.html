@@ -3,14 +3,9 @@
     <img mat-card-avatar [src]="user.avatarUrl" [alt]="user.name" class="header__avatar">
     <mat-card-title class="header__title">{{ user.nickname}}</mat-card-title>
     <mat-card-subtitle class="header__subtitle">{{ user.country }}</mat-card-subtitle>
-    <button class="header__btn btn" mat-icon-button type="button" (click)="removeFromFavorites()" *ngIf="user.isFavorite; else addToFavoritesAction">
-      <mat-icon>bookmark_remove</mat-icon>
+    <button class="header__btn btn" mat-icon-button type="button" (click)="removeFromFavorites()">
+      <mat-icon class="icon">bookmark_remove</mat-icon>
     </button>
-    <ng-template #addToFavoritesAction>
-      <button class="header__btn btn" mat-icon-button type="button" (click)="addToFavorites()">
-        <mat-icon>bookmark_add</mat-icon>
-      </button>
-    </ng-template>
   </mat-card-header>
   <mat-card-content class="user-card__interests-list interests-list">
     <ul class="interests-list">
@@ -27,7 +22,7 @@
     <a [routerLink]="['/home/users', user.id]" class="action__btn btn">
       <mat-icon class="icon">person</mat-icon>
     </a>
-    <button class="action__btn btn" (click)="createChat()">
+    <button class="action__btn btn" (click)="createChat(user.id)">
       <mat-icon class="icon">email</mat-icon>
     </button>
   </mat-card-actions>

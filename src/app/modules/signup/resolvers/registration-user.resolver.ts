@@ -2,28 +2,35 @@ import { Injectable } from '@angular/core';
 import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {AngularFirestore} from "@angular/fire/firestore";
-import {first, map} from "rxjs/operators";
-import {UserJSON} from "../../shared";
+import {first, map, switchMap} from "rxjs/operators";
 import {UserRegistrationService} from "../services";
+import {AngularFireAuth} from "@angular/fire/auth";
+import firebase from "firebase";
+import CollectionReference = firebase.firestore.CollectionReference;
 
 @Injectable()
 export class RegistrationUserResolver implements Resolve<null> {
   constructor(
     private readonly firestore: AngularFirestore,
+    private readonly fireAuth: AngularFireAuth,
     private readonly registrationService: UserRegistrationService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<null> {
-    if (!route.queryParamMap.has('id')) return of(null);
-    const userId = route.queryParamMap.get('id')!;
-
-    return this.firestore.doc<UserJSON>(`users/${userId}`).valueChanges().pipe(
+    return this.fireAuth.user.pipe(
       first(),
-      map(user => {
-        this.registrationService.user.id = userId;
-        Object.assign(this.registrationService.user, user);
-        return null;
+      switchMap(user => {
+        if (!user) return of(null);
+        const queryAuthUser = (ref: CollectionReference) => ref.where('authId', '==', user.uid);
+        return this.firestore.collection('users', queryAuthUser).get().pipe(
+          map((query) => {
+            const user = query.docs[0];
+            this.registrationService.user.id = user.id;
+            Object.assign(this.registrationService.user, user.data());
+            return null;
+          })
+        )
       })
-    )
+    );
   }
 }

@@ -1,4 +1,6 @@
 import {RegistrationProgress} from "../../shared/models";
+import firebase from "firebase";
+import DocumentReference = firebase.firestore.DocumentReference;
 
 export class RegistrationUserModel {
   public progress: RegistrationProgress = RegistrationProgress.START;
@@ -13,4 +15,5 @@ export class RegistrationUserModel {
   public sentenceAboutUser = '';
   public avatarUrl = '';
   public interests: string[] = [];
+  public favoriteUsers: DocumentReference[] = [];
 }

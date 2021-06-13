@@ -26,6 +26,10 @@ export interface UserJSON {
   sentenceAboutUser: string;
 }
 
+export interface FullUserJSON extends UserJSON {
+  id: string;
+}
+
 interface Interest {
   name: string;
   isMatch: boolean;
@@ -61,7 +65,7 @@ export class UserModel {
     });
   }
 
-  static fromDocumentData(data: UserJSON & { id: string }): UserModel {
+  static fromDocumentData(data: FullUserJSON): UserModel {
     return new UserModel(
       data.id,
       data.nickname,
@@ -69,8 +73,8 @@ export class UserModel {
       data.email,
       data.avatarUrl,
       data.country,
-      (data.dateOfBirth as unknown as Timestamp).toDate(),
-      data.interests.map(name => ({name, isMatch: false})),
+      !!data.dateOfBirth ? (data.dateOfBirth as unknown as Timestamp).toDate() : new Date(),
+      !!data.interests ? data.interests.map(name => ({name, isMatch: false})) : [],
       data.favoriteUsers,
       data.sentenceAboutUser,
       data.progress

@@ -50,7 +50,8 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', redirectTo: '/home/search', pathMatch: 'full' }
+  { path: '', pathMatch: 'full', redirectTo: '/home'  },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

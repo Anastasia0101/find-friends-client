@@ -16,9 +16,7 @@ export class AuthOnlyGuard implements CanActivate {
       map(user => {
         if (!user) return this.router.createUrlTree(['/auth']);
         if (user.isRegistrationFinished) return true;
-        return this.router.createUrlTree(['/auth/sign-up'], {
-          queryParams: { progress: 'email-verified', id: user.id }
-        });
+        return this.router.createUrlTree(['/auth/sign-up']);
       })
     );
   }

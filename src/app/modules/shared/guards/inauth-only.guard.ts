@@ -13,7 +13,9 @@ export class InauthOnlyGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     return this.userService.currentUser$.pipe(
-      map(user => user && user.isRegistrationFinished ? this.router.createUrlTree(['/home']) : true)
+      map(user => {
+        return user && user.isRegistrationFinished ? this.router.createUrlTree(['/home']) : true;
+      })
     );
   }
 }

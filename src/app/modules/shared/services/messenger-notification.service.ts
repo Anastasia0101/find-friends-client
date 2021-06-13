@@ -5,7 +5,7 @@ import firebase from "firebase";
 import CollectionReference = firebase.firestore.CollectionReference;
 import {ChatJSON, FullChatJSON, FullMessageJSON, MessageJSON, MessageModel} from "../../messenger/models";
 import {UserService} from "./user.service";
-import {map, skip, switchMap} from "rxjs/operators";
+import {filter, map, skip, switchMap} from "rxjs/operators";
 import Timestamp = firebase.firestore.Timestamp;
 
 export interface MessageNotification {
@@ -24,6 +24,7 @@ export class MessengerNotificationService {
 
   private createNotificationsStream(): Observable<MessageNotification> {
     return this.userService.currentUser$.pipe(
+      filter(user => user?.isRegistrationFinished ?? false),
       switchMap(this.loadChats.bind(this)),
       switchMap((chats): Observable<MessageNotification> => {
         return merge(...chats.map(chat => this.listenUserMessages(chat).pipe(

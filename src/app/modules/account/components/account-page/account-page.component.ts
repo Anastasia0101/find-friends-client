@@ -8,6 +8,7 @@ import {NavigationLinkModel} from "../../../../models";
 })
 export class AccountPageComponent {
   public readonly navigationLinks: NavigationLinkModel[] = [
-    new NavigationLinkModel('Credentials', '/home/account/credentials')
+    new NavigationLinkModel('Credentials', 'credentials'),
+    new NavigationLinkModel('Personal Info', 'details')
   ];
 }

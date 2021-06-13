@@ -8,7 +8,7 @@ export class RegistrationUserModel {
   public password = '';
   public name = '';
   public nickname = '';
-  public dateOfBirth = '';
+  public dateOfBirth: Date = new Date();
   public country = '';
   public sentenceAboutUser = '';
   public avatarUrl = '';

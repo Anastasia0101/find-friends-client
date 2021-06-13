@@ -6,7 +6,7 @@
       <a
         *ngFor="let link of navigationLinks"
         mat-list-item
-        [routerLink]="link.href"
+        [routerLink]="['/home/account', link.href]"
         routerLinkActive="mat-list-item-disabled"
       >
         <h3 matLine>{{ link.title }}</h3>

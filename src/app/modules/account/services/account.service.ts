@@ -2,16 +2,18 @@ import {Injectable} from "@angular/core";
 import {UserJSON, UserService} from "../../shared";
 import {from, Observable, of} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/auth";
-import {switchMap} from "rxjs/operators";
+import {last, switchMap, tap} from "rxjs/operators";
 import {respondWithVoid} from "../../../operators";
 import firebase from "firebase";
 import User = firebase.User;
+import {AngularFireStorage} from "@angular/fire/storage";
 
 @Injectable()
 export class AccountService {
   constructor(
     private readonly userService: UserService,
-    private readonly fireAuth: AngularFireAuth
+    private readonly fireAuth: AngularFireAuth,
+    private readonly fireStorage: AngularFireStorage
   ) {}
 
   public updateUser(attrs: Partial<UserJSON>): Observable<void> {
@@ -42,6 +44,16 @@ export class AccountService {
     return this.authUser$.pipe(
       this.doUserChange(user => from(user.updatePassword(password))),
       respondWithVoid
+    );
+  }
+
+  public updateAvatar([file]: File[]): Observable<string> {
+    if (!file) return of('');
+    const userId = this.userService.currentUser?.id;
+    const task = this.fireStorage.upload(`users/${userId}/${Date.now()}.${file.name}`, file)
+    return task.snapshotChanges().pipe(
+      last(),
+      switchMap(snapshot => from(snapshot!.ref.getDownloadURL() as Promise<string>)),
     );
   }
 }

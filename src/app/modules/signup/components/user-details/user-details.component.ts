@@ -36,7 +36,7 @@ export class UserDetailsComponent {
         Validators.pattern('[a-zA-Z0-9]*')
       ]
     ],
-    dateOfBirth: ['', Validators.required],
+    dateOfBirth: [new Date(), Validators.required],
     country: ['', Validators.required]
   });
 

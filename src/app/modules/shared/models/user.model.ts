@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
+import Timestamp = firebase.firestore.Timestamp;
 
 export enum RegistrationProgress {
   START = 'start',
@@ -18,6 +19,7 @@ export interface UserJSON {
   avatarUrl: string;
   progress: RegistrationProgress;
   country: string;
+  dateOfBirth: Date;
   interests: string[];
 }
 
@@ -36,6 +38,7 @@ export class UserModel {
     public readonly email: string,
     public readonly avatarUrl: string,
     public readonly country: string,
+    public readonly dateOfBirth: Date,
     public interests: Interest[],
     public readonly progress: RegistrationProgress
   ) {
@@ -60,6 +63,7 @@ export class UserModel {
       data.email,
       data.avatarUrl,
       data.country,
+      (data.dateOfBirth as unknown as Timestamp).toDate(),
       data.interests.map(name => ({name, isMatch: false})),
       data.progress
     )

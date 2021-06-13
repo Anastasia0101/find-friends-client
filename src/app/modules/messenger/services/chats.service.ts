@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { combineLatest, from, Observable, of } from "rxjs";
-import { first, map, switchMap } from "rxjs/operators";
+import { map, switchMap } from "rxjs/operators";
 import {UserJSON, UserModel, UserService} from "../../shared";
-import {ChatJSON, ChatModel} from "../models";
+import {ChatJSON, ChatModel, MessageJSON, MessageModel} from "../models";
+import firebase from "firebase";
+import CollectionReference = firebase.firestore.CollectionReference;
 
 interface NewChat {
   chatId: string;
@@ -31,7 +33,6 @@ export class ChatsService {
         return combineLatest(chats.map(chat => {
           const receiverId = chat.getReceiverId(this.userService.currentUser!.id);
           return this.firestore.doc<UserJSON>(`users/${receiverId}`).get().pipe(
-            first(),
             map((doc): ChatModel => {
               chat.receiver = UserModel.fromDocument(doc);
               return chat
@@ -40,6 +41,13 @@ export class ChatsService {
         }));
       })
     );
+  }
+
+  public loadLastMessage(chat: ChatModel): Observable<MessageModel | null> {
+    const queryLastMessage = (ref: CollectionReference) => ref.orderBy('createdAt', 'desc').limit(1);
+    return this.firestore.collection<MessageJSON>(`chats/${chat.id}/messages`, queryLastMessage).valueChanges({ idField: 'id' }).pipe(
+      map(messages => messages.length ? MessageModel.fromDocumentData(messages[0]) : null)
+    )
   }
 
   createChat(targetUserId: string): Observable<NewChat> {

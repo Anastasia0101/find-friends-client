@@ -59,7 +59,8 @@
               "src/styles.css"
             ],
             "allowedCommonJsDependencies": [
-              "zone.js/dist/zone-error"
+              "zone.js/dist/zone-error",
+              "@firebase/app-check"
             ],
             "scripts": []
           },

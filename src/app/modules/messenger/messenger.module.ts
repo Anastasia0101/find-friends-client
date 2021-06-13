@@ -3,7 +3,14 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {ReactiveFormsModule} from "@angular/forms";
-import { ChatComponent, MessengerSidebarComponent, MessengerPageComponent, ChatSenderComponent, ChatMessageComponent} from "./components";
+import {
+  ChatComponent,
+  MessengerSidebarComponent,
+  MessengerPageComponent,
+  ChatSenderComponent,
+  ChatMessageComponent,
+  MessengerSidebarItemComponent
+} from "./components";
 import { SharedModule, MaterialModule } from "../shared";
 import { ChatResolver } from "./resolvers";
 import {ChatService, ChatsService} from "./services";
@@ -37,7 +44,8 @@ import {MatButtonModule} from "@angular/material/button";
     MessengerSidebarComponent,
     MessengerPageComponent,
     ChatSenderComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
+    MessengerSidebarItemComponent
   ],
   providers: [
     ChatResolver,

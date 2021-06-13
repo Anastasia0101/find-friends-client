@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import DocumentReference = firebase.firestore.DocumentReference;
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 import {UserJSON, UserModel} from "../../shared";
 
 export interface MessageJSON {
@@ -11,6 +12,13 @@ export interface MessageJSON {
 export class MessageModel {
   public author: UserModel | null = null;
   public isCurrentUserMessage: boolean = false;
+
+  public static fromDocument(doc: DocumentSnapshot<MessageJSON>): MessageModel {
+    return MessageModel.fromDocumentData({
+      ...doc.data()!,
+      id: doc.id
+    })
+  }
 
   public static fromDocumentData(data: MessageJSON & { id: string }): MessageModel {
     return new MessageModel(

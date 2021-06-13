@@ -9,7 +9,7 @@
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  margin-top: 1em;
+  padding-top: 1em;
 }
 
 .header__logo {

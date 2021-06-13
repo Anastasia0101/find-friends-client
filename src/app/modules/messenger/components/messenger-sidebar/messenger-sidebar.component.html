@@ -2,15 +2,7 @@
 <mat-drawer-container class="sidebar">
   <mat-drawer mode="side" class="sidebar__drawer" opened>
     <mat-nav-list>
-      <a
-        mat-list-item
-        routerLinkActive="mat-list-item-disabled"
-        [routerLink]="chat.id"
-        *ngFor="let chat of chats$ | async"
-      >
-        <img matListAvatar [src]="chat.receiver?.avatarUrl" [alt]="chat.receiver?.name">
-        <h3 matLine>{{chat.receiver?.nickname}}</h3>
-      </a>
+      <app-messenger-sidebar-item *ngFor="let chat of chats$ | async" [chat]="chat"></app-messenger-sidebar-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content class="sidebar__drawer-content">

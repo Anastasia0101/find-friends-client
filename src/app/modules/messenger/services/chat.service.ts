@@ -35,7 +35,7 @@ export class ChatService {
       this.userService.loadUser(this.activeChat!.targetUserId)
     ]).pipe(
       switchMap(([authorUser, targetUser]) => {
-        const queryMessages = (ref: CollectionReference) => ref.orderBy('createdAt', 'desc');
+        const queryMessages = (ref: CollectionReference) => ref.orderBy('createdAt', 'asc');
         return this.firestore.collection<MessageJSON>(this.messagesPath, queryMessages).valueChanges({ idField: 'id' }).pipe(
           map(messages => messages.map(message => {
             const model = MessageModel.fromDocumentData(message);

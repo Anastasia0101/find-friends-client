@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from "../../services";
 import {MessageModel} from "../../models";
 import {ActivatedRoute} from "@angular/router";
@@ -11,7 +11,8 @@ import {Subject, Subscription} from "rxjs";
 })
 export class ChatComponent implements OnInit {
   public messages: MessageModel[] = [];
-  private readonly destroy$: Subject<null> = new Subject<null>();
+  @ViewChild('messagesContainer')
+  private messagesContainerRef!: ElementRef<HTMLElement>;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -23,7 +24,16 @@ export class ChatComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(() => {
       messagesSubscription?.unsubscribe();
-      messagesSubscription = this.chatService.messages$.subscribe(messages => this.messages = messages);
+      messagesSubscription = this.chatService.messages$.subscribe(this.onMessagesUpdated.bind(this));
     });
+  }
+
+  private onMessagesUpdated(messages: MessageModel[]) {
+    this.messages = messages;
+    setTimeout(this.scrollToBottom.bind(this));
+  }
+
+  private scrollToBottom() {
+    this.messagesContainerRef.nativeElement.scrollTop = this.messagesContainerRef.nativeElement.scrollHeight;
   }
 }

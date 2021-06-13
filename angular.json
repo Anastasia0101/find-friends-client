@@ -58,6 +58,9 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
+            "allowedCommonJsDependencies": [
+              "zone.js/dist/zone-error"
+            ],
             "scripts": []
           },
           "configurations": {

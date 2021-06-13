@@ -13,3 +13,7 @@
   overflow-y: scroll;
   padding-top: 10px;
 }
+
+.container__messages-item:first-child {
+  margin-top: auto;
+}

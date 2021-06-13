@@ -1,6 +1,7 @@
 <div class="container">
   <div class="container__messages" #messagesContainer>
     <app-chat-message
+      class="container__messages-item"
       *ngFor="let message of messages"
       [message]="message"
     ></app-chat-message>

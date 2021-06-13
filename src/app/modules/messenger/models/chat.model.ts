@@ -1,10 +1,14 @@
 import { UserModel } from "../../shared";
 import firebase from "firebase";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
+import DocumentReference = firebase.firestore.DocumentReference;
 
 export interface ChatJSON {
-  authorUserId: string;
-  targetUserId: string;
+  members: DocumentReference[];
+}
+
+export interface FullChatJSON extends ChatJSON {
+  id: string;
 }
 
 export class ChatModel {
@@ -18,23 +22,18 @@ export class ChatModel {
   static fromDocumentData(data: ChatJSON & { id: string }): ChatModel {
     return new ChatModel(
       data.id,
-      data.authorUserId,
-      data.targetUserId
+      data.members
     );
   }
 
   constructor(
     public readonly id: string,
-    public readonly authorUserId: string,
-    public readonly targetUserId: string,
+    public readonly members: DocumentReference[],
     public receiver?: UserModel
   ) {}
 
-  isUserMember(userId: string): boolean {
-    return [this.authorUserId, this.targetUserId].includes(userId);
-  }
-
   getReceiverId(currentUserId: string): string {
-    return currentUserId === this.authorUserId ? this.targetUserId : this.authorUserId;
+    const [user1, user2] = this.members;
+    return currentUserId === user1.id ? user2.id : user1.id;
   }
 }

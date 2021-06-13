@@ -9,6 +9,10 @@ export interface MessageJSON {
   createdAt: Date;
 }
 
+export interface FullMessageJSON extends MessageJSON {
+  id: string;
+}
+
 export class MessageModel {
   public author: UserModel | null = null;
   public isCurrentUserMessage: boolean = false;

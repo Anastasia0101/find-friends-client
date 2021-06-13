@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ChatModel, MessageJSON, MessageModel} from "../models";
-import {combineLatest, from, Observable, of} from "rxjs";
+import {from, Observable, of} from "rxjs";
 import {map, switchMap, tap} from "rxjs/operators";
 import {ChatsService} from "./chats.service";
 import {UserService} from "../../shared";
@@ -30,16 +30,14 @@ export class ChatService {
   }
 
   private createMessages$(): Observable<MessageModel[]> {
-    return combineLatest([
-      this.userService.loadUser(this.activeChat!.authorUserId),
-      this.userService.loadUser(this.activeChat!.targetUserId)
-    ]).pipe(
-      switchMap(([authorUser, targetUser]) => {
+    const receiverId = this.activeChat!.getReceiverId(this.userService.currentUserRef.id);
+    return this.userService.loadUser(receiverId).pipe(
+      switchMap(receiver => {
         const queryMessages = (ref: CollectionReference) => ref.orderBy('createdAt', 'asc');
         return this.firestore.collection<MessageJSON>(this.messagesPath, queryMessages).valueChanges({ idField: 'id' }).pipe(
           map(messages => messages.map(message => {
             const model = MessageModel.fromDocumentData(message);
-            model.author = (model.authorRef.id === authorUser?.id ? authorUser : targetUser)!;
+            model.author = (model.authorRef.id === receiverId ? receiver : this.userService.currentUser)!;
             model.isCurrentUserMessage = model.author.id === this.userService.currentUser?.id
             return model;
           }))

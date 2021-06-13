@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { combineLatest, from, Observable, of } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
-import {UserJSON, UserModel, UserService} from "../../shared";
+import {UserService} from "../../shared";
 import {ChatJSON, ChatModel, MessageJSON, MessageModel} from "../models";
 import firebase from "firebase";
 import CollectionReference = firebase.firestore.CollectionReference;
@@ -20,21 +20,17 @@ export class ChatsService {
   ) { }
 
   public loadChats(): Observable<ChatModel[]> {
-    return combineLatest([
-      this.firestore.collection<ChatJSON>('chats').valueChanges({ idField: 'id' }),
-      this.userService.currentUser$
-    ]).pipe(
-      map(([chats]) => {
-        return chats
-          .map(json => ChatModel.fromDocumentData(json))
-          .filter(chat => chat.isUserMember(this.userService.currentUser!.id));
-      }),
+    const queryChats = (ref: CollectionReference) => {
+      return ref.where('members', 'array-contains', this.userService.currentUserRef);
+    }
+    return this.firestore.collection<ChatJSON>('chats', queryChats).valueChanges({ idField: 'id' }).pipe(
+      map((chats) => chats.map(json => ChatModel.fromDocumentData(json))),
       switchMap(chats => {
         return combineLatest(chats.map(chat => {
           const receiverId = chat.getReceiverId(this.userService.currentUser!.id);
-          return this.firestore.doc<UserJSON>(`users/${receiverId}`).get().pipe(
-            map((doc): ChatModel => {
-              chat.receiver = UserModel.fromDocument(doc);
+          return this.userService.loadUser(receiverId).pipe(
+            map((receiver): ChatModel => {
+              chat.receiver = receiver!;
               return chat
             })
           )
@@ -51,19 +47,21 @@ export class ChatsService {
   }
 
   createChat(targetUserId: string): Observable<NewChat> {
-    return this.loadChats().pipe(
-      switchMap(chats => {
-        const chat = chats.find(chat => chat.isUserMember(targetUserId));
-        if (chat) return of({ chatId: chat.id });
-
-        const data: ChatJSON = {
-          authorUserId: this.userService.currentUser!.id,
-          targetUserId: targetUserId
-        };
-
-        return from(this.firestore.collection<ChatJSON>('chats').add(data)).pipe(
-          map(doc => ({ chatId: doc.id }))
-        );
+    const members = [
+      this.userService.makeUserRef(targetUserId),
+      this.userService.currentUserRef
+    ]
+    const queryUserChat = (ref: CollectionReference) => {
+      return ref.where('members', 'array-contains-any', members);
+    }
+    return this.firestore.collection<ChatJSON>('chats', queryUserChat).get().pipe(
+      switchMap(query => {
+        if (query.empty) {
+          return from(this.firestore.collection<ChatJSON>('chats').add({members})).pipe(
+            map(doc => ({ chatId: doc.id }))
+          );
+        }
+        return of({ chatId: query.docs[0].id });
       })
     );
   }

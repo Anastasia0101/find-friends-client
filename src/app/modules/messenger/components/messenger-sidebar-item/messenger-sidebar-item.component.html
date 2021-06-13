@@ -2,8 +2,11 @@
   mat-list-item
   routerLinkActive="mat-list-item-disabled"
   [routerLink]="chat.id"
+  class="chat"
 >
   <img mat-list-avatar [src]="receiver.avatarUrl" [alt]="receiver.name">
   <h3 mat-line>{{receiver.nickname}}</h3>
-  <p mat-line class="chat__last-message" *ngIf="lastMessage">{{ lastMessage.text }}</p>
+  <p mat-line class="chat__last-message" [class.chat__last-message--visible]="lastMessage" >
+    {{ lastMessage?.text || 'No messages' }}
+  </p>
 </a>

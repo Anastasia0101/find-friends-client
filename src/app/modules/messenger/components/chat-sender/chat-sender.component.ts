@@ -16,6 +16,6 @@ export class ChatSenderComponent {
     event.preventDefault();
     const text = this.messageControl.value.trim();
     if (text) this.chatService.send(text);
-    this.messageControl.reset();
+    this.messageControl.reset('');
   }
 }

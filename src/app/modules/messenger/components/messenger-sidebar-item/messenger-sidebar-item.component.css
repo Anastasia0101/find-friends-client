@@ -2,3 +2,7 @@
   padding-top: 4px;
   color: #929292;
 }
+
+.chat__last-message:not(.chat__last-message--visible) {
+  visibility: hidden;
+}

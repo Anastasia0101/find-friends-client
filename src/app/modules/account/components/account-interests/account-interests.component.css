@@ -1,0 +1,13 @@
+.interest-input {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.interest-input__field {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.interests {
+  margin-bottom: 20px;
+}

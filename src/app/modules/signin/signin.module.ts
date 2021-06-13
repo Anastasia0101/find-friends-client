@@ -6,6 +6,7 @@ import {LoginService} from "./services";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../shared";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {MaterialModule} from "../shared";
       { path: '', component: LoginComponent }
     ]),
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   declarations: [
     LoginComponent

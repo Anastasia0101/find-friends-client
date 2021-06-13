@@ -1,13 +1,15 @@
 import {NgModule} from "@angular/core";
 import {SharedModule} from "../shared";
 import {RouterModule} from "@angular/router";
-import { AccountPageComponent, AccountCredentialsComponent, AccountDetailsComponent } from './components';
+import { AccountPageComponent, AccountCredentialsComponent, AccountDetailsComponent, AccountInterestsComponent } from './components';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AccountService} from "./services";
 import {FileUploadModule} from "@iplab/ngx-file-upload";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -29,6 +31,10 @@ import {FileUploadModule} from "@iplab/ngx-file-upload";
           {
             path: 'details',
             component: AccountDetailsComponent
+          },
+          {
+            path: 'interests',
+            component: AccountInterestsComponent
           }
         ]
       }
@@ -37,12 +43,15 @@ import {FileUploadModule} from "@iplab/ngx-file-upload";
     FileUploadModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatChipsModule,
+    MatButtonModule
   ],
   declarations: [
     AccountPageComponent,
     AccountCredentialsComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    AccountInterestsComponent
   ],
   providers: [
     AccountService

@@ -14,11 +14,11 @@ const routes: Routes = [
       },
       {
         path: 'sign-up',
-        loadChildren: () => import('./modules/signup').then(m => m.SignupModule)
+        loadChildren: () => import(/* webpackChunkName: "signup" */ './modules/signup').then(m => m.SignupModule)
       },
       {
         path: 'sign-in',
-        loadChildren: () => import('./modules/signin').then(m => m.SigninModule)
+        loadChildren: () => import(/* webpackChunkName: "signin" */ './modules/signin').then(m => m.SigninModule)
       }
     ]
   },
@@ -34,15 +34,15 @@ const routes: Routes = [
       },
       {
         path: 'account',
-        loadChildren: () => import('./modules/account').then(m => m.AccountModule)
+        loadChildren: () => import(/* webpackChunkName: "account" */ './modules/account').then(m => m.AccountModule)
       },
       {
         path: 'messenger',
-        loadChildren: () => import('./modules/messenger').then(m => m.MessengerModule)
+        loadChildren: () => import(/* webpackChunkName: "messenger" */ './modules/messenger').then(m => m.MessengerModule)
       },
       {
         path: 'search',
-        loadChildren: () => import('./modules/search').then(m => m.SearchModule)
+        loadChildren: () => import(/* webpackChunkName: "search" */ './modules/search').then(m => m.SearchModule)
       }
     ]
   },

@@ -21,6 +21,7 @@ export interface UserJSON {
   country: string;
   dateOfBirth: Date;
   interests: string[];
+  sentenceAboutUser: string;
 }
 
 interface Interest {
@@ -40,6 +41,7 @@ export class UserModel {
     public readonly country: string,
     public readonly dateOfBirth: Date,
     public interests: Interest[],
+    public readonly sentenceAboutUser: string,
     public readonly progress: RegistrationProgress
   ) {
   }
@@ -65,6 +67,7 @@ export class UserModel {
       data.country,
       (data.dateOfBirth as unknown as Timestamp).toDate(),
       data.interests.map(name => ({name, isMatch: false})),
+      data.sentenceAboutUser,
       data.progress
     )
   }

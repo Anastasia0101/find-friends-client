@@ -61,6 +61,7 @@ export class AccountCredentialsComponent {
     this.passwordForm.markAllAsTouched();
     if (this.passwordForm.invalid) return;
     this.accountService.updatePassword(this.passwordForm.value.password).subscribe(() => {
+      this.passwordForm.reset();
       this.toastr.success('Password updated')
     });
   }

@@ -1,0 +1,26 @@
+<form [formGroup]="interestsForm" class="container__form form" (ngSubmit)="saveUserData()">
+  <mat-form-field class="form__desc">
+    <mat-label>Some sentences about yourself:</mat-label>
+    <textarea matInput formControlName="sentenceAboutUser"></textarea>
+  </mat-form-field>
+
+  <div class="interest-input">
+    <mat-form-field class="interest-input__field">
+      <mat-label>Enter your interest:</mat-label>
+      <input type="text" matInput formControlName="interest">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" [disabled]="!interestsForm.value.interest" (click)="addInterest()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-chip-list class="interests">
+    <mat-chip *ngFor="let interest of interests" (removed)="removeInterest(interest)">
+      {{interest}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
+  <button mat-raised-button color="primary" [disabled]="interestsForm.invalid" class="form__btn">Update</button>
+</form>

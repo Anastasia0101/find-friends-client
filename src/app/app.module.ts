@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-
+import {ToastrModule} from "ngx-toastr";
 import {SharedModule} from "./modules/shared";
 
 @NgModule({
@@ -24,7 +24,8 @@ import {SharedModule} from "./modules/shared";
     ReactiveFormsModule,
     SharedModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

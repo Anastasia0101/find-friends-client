@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AuthOnlyGuard, InauthOnlyGuard} from "./modules/shared";
+import {AuthOnlyGuard, InauthOnlyGuard, CurrentUserResolver} from "./modules/shared";
 
 const routes: Routes = [
   {
@@ -25,6 +25,7 @@ const routes: Routes = [
   {
     path: 'home',
     canActivate: [AuthOnlyGuard],
+    resolve: { currentUser: CurrentUserResolver },
     children: [
       {
         path: '',

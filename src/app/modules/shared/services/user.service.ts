@@ -10,7 +10,7 @@ import DocumentReference = firebase.firestore.DocumentReference;
 
 type CurrentUser = UserModel | null;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
   public readonly currentUser$: Observable<CurrentUser> = this.updateCurrentUser();
   public currentUser: CurrentUser = null;
@@ -32,7 +32,7 @@ export class UserService {
 
     return this.firestore
       .collection<UserJSON>('users', queryCurrentUser)
-      .get().pipe(map(query => UserModel.fromDocument(query.docs[0])!));
+      .valueChanges({ idField: 'id' }).pipe(map(data => UserModel.fromDocumentData(data[0])));
   }
 
   signOut() {

@@ -13,7 +13,7 @@
       {{ link.title }}
     </a>
   </nav>
-  <div class="header__user-account user-account" *ngIf="user$ | async as user; else profilePlaceholder">
+  <div class="header__user-account user-account" *ngIf="user">
     <p class="user-account__nickname">{{ user.nickname }}</p>
     <img [src]="user.avatarUrl" [alt]="user.name" class="user-account__avatar circle">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="user-account__menu">
@@ -25,8 +25,5 @@
       </button>
     </mat-menu>
   </div>
-  <ng-template #profilePlaceholder>
-    <div style="width: 150px; height: 51px"></div>
-  </ng-template>
 </header>
 <div class="line"></div>

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {NavigationLinkModel} from "../../../../models";
 
 @Component({
   selector: 'app-account-page',
@@ -7,34 +7,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./account-page.component.css']
 })
 export class AccountPageComponent {
-  registrationForm: FormGroup = this.formBuilder.group({
-    name: [
-      '', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.pattern('[a-zA-Z]*')
-      ]
-    ],
-    nickname: [
-      '', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9]*')
-      ]
-    ],
-    email: [
-      '', [
-        Validators.email,
-        Validators.min(6)
-      ]
-    ],
-    dateOfBirth: ['', Validators.required],
-    country: ['', Validators.required],
-    sentenceAboutUser: ['', Validators.required]
-  });
-
-  constructor(private formBuilder: FormBuilder) {}
-
-  saveUserData(): void {}
+  public readonly navigationLinks: NavigationLinkModel[] = [
+    new NavigationLinkModel('Credentials', '/home/account/credentials')
+  ];
 }

@@ -47,13 +47,15 @@ export class AccountService {
     );
   }
 
-  public updateAvatar([file]: File[]): Observable<string> {
-    if (!file) return of('');
+  public updateAvatar([file]: File[]): Observable<void> {
+    if (!file) return of(void 0);
     const userId = this.userService.currentUser?.id;
     const task = this.fireStorage.upload(`users/${userId}/${Date.now()}.${file.name}`, file)
     return task.snapshotChanges().pipe(
       last(),
       switchMap(snapshot => from(snapshot!.ref.getDownloadURL() as Promise<string>)),
+      switchMap(avatarUrl => this.updateUser({ avatarUrl })),
+      respondWithVoid
     );
   }
 }

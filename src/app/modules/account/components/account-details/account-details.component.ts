@@ -52,6 +52,7 @@ export class AccountDetailsComponent {
     this.accountService.updateAvatar(this.avatarControl.value).pipe(
       switchMap(() => this.accountService.updateUser(this.detailsForm.value))
     ).subscribe(() => {
+      this.avatarControl.clear();
       this.toastr.success('Updated');
     });
   }

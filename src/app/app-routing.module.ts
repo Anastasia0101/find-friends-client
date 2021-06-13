@@ -43,6 +43,10 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: () => import(/* webpackChunkName: "search" */ './modules/search').then(m => m.SearchModule)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import(/* webpackChunkName: "profile" */ './modules/profile').then(m => m.ProfileModule)
       }
     ]
   },

@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { MatListModule } from '@angular/material/list';
     MatCardModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule
   ],
   exports: [
     MatCheckboxModule,
@@ -39,7 +41,8 @@ import { MatListModule } from '@angular/material/list';
     MatCardModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule
   ],
   declarations: []
 })

@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<mat-card class="profile" *ngIf="user$ | async as user">
+  <img class="profile__image" mat-card-xl-image [src]="user.avatarUrl" [alt]="user.name">
+
+  <div class="profile__content">
+    <mat-card-title>
+      {{ user.nickname }}
+      <p class="profile__country">({{ user.country }}, {{ user.dateOfBirth | appAge }} y.o)</p>
+    </mat-card-title>
+    <mat-card-content>
+      <p>{{ user.sentenceAboutUser }}</p>
+      <ul class="interests-list">
+        <li
+          *ngFor="let interest of user.interests"
+          class="interests-list__item"
+          [class.interests-list__item--matched]="interest.isMatch"
+        >
+          #{{ interest.name }}
+        </li>
+      </ul>
+    </mat-card-content>
+  </div>
+</mat-card>

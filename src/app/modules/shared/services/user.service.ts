@@ -43,9 +43,9 @@ export class UserService {
     return this.firestore.doc<UserJSON>(`users/${this.currentUser!.id}`).ref;
   }
 
-  loadUser(userId: string): Observable<UserModel> {
+  loadUser(userId: string): Observable<UserModel | null> {
     return this.firestore.doc<UserJSON>(`users/${userId}`).get().pipe(
-      map(doc => UserModel.fromDocument(doc))
+      map(doc => doc.exists ? UserModel.fromDocument(doc) : null)
     );
   }
 }

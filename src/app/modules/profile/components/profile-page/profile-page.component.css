@@ -1,0 +1,40 @@
+.profile {
+  max-width: 700px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.profile__country {
+  display: inline;
+  font-size: 14px;
+  color: #929292;
+}
+
+.profile__image.profile__image.profile__image {
+  height: auto;
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin: -16px 16px -16px -16px;
+  min-height: 240px;
+}
+
+.profile__content {
+  flex-grow: 1;
+}
+
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.interests-list__item {
+  list-style: none;
+  margin: 5px;
+}
+
+.interests-list__item:not(.interests-list__item--matched) {
+  color: #A7A7A7;
+}

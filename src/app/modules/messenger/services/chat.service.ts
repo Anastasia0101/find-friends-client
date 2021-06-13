@@ -39,7 +39,7 @@ export class ChatService {
         return this.firestore.collection<MessageJSON>(this.messagesPath, queryMessages).valueChanges({ idField: 'id' }).pipe(
           map(messages => messages.map(message => {
             const model = MessageModel.fromDocumentData(message);
-            model.author = model.authorRef.id === authorUser.id ? authorUser : targetUser;
+            model.author = (model.authorRef.id === authorUser?.id ? authorUser : targetUser)!;
             model.isCurrentUserMessage = model.author.id === this.userService.currentUser?.id
             return model;
           }))
